@@ -1,0 +1,155 @@
+version: '3'
+services:
+  #-TODO jitsi
+  chaba:
+    image: chaba
+    container_name: chaba
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    volumes:
+      # TODO check, if possible to circumvent static path in docker-compose file
+      - .:/var/www/bibelkreis
+      #- .docker/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      #- .docker/php.ini:/usr/local/etc/php/php.ini
+      #- .:/var/www/html/
+      #- app-config-data:/var/www/.config/
+    environment:
+      CONTAINER_ROLE: app
+    restart: unless-stopped
+    networks:
+      - mynet
+
+  web:
+    container_name: web
+    image: nginx:1.17
+    depends_on:
+      - chaba
+    volumes:
+      # TODO check, if possible to circumvent static path in docker-compose file
+      - .:/var/www/bibelkreis
+      #- .:/var/www/html/:ro
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+      - ./docker/nginx/ssl/:/etc/nginx/ssl/
+      - ./storage/logs/nginx:/var/log/nginx/
+    ports:
+      - 80:80
+      - 443:443
+    restart: on-failure
+    networks:
+      - mynet
+
+  database:
+    container_name: database
+    image: mariadb:10.5
+    volumes:
+      - ./storage/logs/mysql:/var/log/mysql/
+      - ./docker/mariadb/etc/my.cnf:/etc/mysql/my.cnf
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    networks:
+      - mynet
+
+  redis:
+    container_name: redis
+    build:
+      context: .
+      dockerfile: ./docker/redis/Dockerfile
+    #image: redis:latest
+    volumes:
+      - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+    networks:
+      - mynet
+
+  queue:
+    container_name: queue
+    build:
+      context: .
+      dockerfile: ./docker/php-cli/Dockerfile
+    depends_on:
+      - redis
+      - chabaa
+    volumes:
+# TODO check, if possible to circumvent static path in docker-compose file
+      - .:/var/www/bibelkreis
+    restart: on-failure
+    environment:
+      CONTAINER_ROLE: queue
+    networks:
+      - mynet
+
+  ftp:
+    container_name: ftp
+    image: vimagick/vsftpd
+    networks:
+      - mynet
+
+  icecast:
+    container_name: icecast
+    build:
+      context: .
+      dockerfile: docker/icecast/Dockerfile
+    working_dir: /var/www/bibelkreis
+    command: docker/icecast/start_modified.sh
+    volumes:
+      #- ./storage/logs/icecast:/var/log/icecast2
+      - /var/www/bibelkreis/docker/icecast/start_modified.sh/:/var/www/bibelkreis/docker/icecast/start_modified.sh:ro
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - ICECAST_SOURCE_PASSWORD=${ICECAST_SOURCE_PASSWORD}
+      - ICECAST_ADMIN_PASSWORD=${ICECAST_ADMIN_PASSWORD}
+      - ICECAST_RELAY_PASSWORD=${ICECAST_RELAY_PASSWORD}
+      - ICECAST_PASSWORD=${ICECAST_MOUNT_PASSWORD}
+      - ICECAST_PORT=${ICECAST_PORT}
+    ports:
+# TODO set icecast port correctly through environment variable into config
+      - 8008:8008
+    networks:
+      - mynet
+
+  websocket:
+    container_name: websocket
+    image: mintopia/laravel-echo-server
+    #build: ./docker/echo
+    #working_dir: /usr/src/app
+    #volumes:
+     # - "./:/usr/src/app"
+    #  - ./laravel-echo-server.json:/app/laravel-echo-server.json
+    ports:
+      - 6001:6001
+    networks:
+      - mynet
+
+  streaming-server:
+    build:
+      context: .
+      dockerfile: ./docker/streaming-server/Dockerfile
+    container_name: streaming-server
+    volumes:
+      - ./docker/streaming-server/app.js:/usr/src/app/app.js
+    ports:
+      - 8000:8000
+      - 1935:1935
+    networks:
+      - mynet
+
+  reverse-proxy:
+    container_name: reverse-proxy
+    image: traefik:latest
+    networks:
+      - mynet
+
+#jitsi is coming with its own dedicated docker-compose file making available all services needed for video conferencing
+    #video-call:
+    #image: jitsi
+
+networks:
+  mynet:

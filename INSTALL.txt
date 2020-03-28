@@ -1,0 +1,48 @@
+************************** STEP 1: install docker and docker-compose ***************************
+sudo apt-get update
+sudo apt-get install docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo apt-get install docker-compose
+sudo adduser your_user docker
+sudo service docker restart
+
+************************** STEP 2: install chaba and its dependancies  **********************************
+git clone github.com/chaba
+composer install
+npm install
+sudo chown -R www-data:www-data .
+
+
+*************************** STEP 3: configure and initialize application *******************************
+* STEP 3.1 prepare your server *
+// chaba occupies the ports 80 (nginx), 3306, 8000 (video-streaming), 8008 (icecast), 6379 (redis) and 6001 (laravel-echo).
+// Stop any other running applications listening on these ports or reconfigure chaba for using other ports
+./shutdown-services.sh
+/*
+*STEP 3.2 configure your chaba application.
+    Modify .env: set desired credentials for
+    ICECAST_SOURCE_PASSWORD to authenticate audio streaming sources
+    ICECAST_MOUNT_NAME for the audio streaming url path
+
+    CHABA_ADMIN_USER for generating the chaba admin user (responsible for app contents of startpage and recordings)
+    CHABA_ADMIN_PASSWORD= for setting the chaba admin password
+
+    CHABA_CONGREGATION_USER for generating the chaba congregation user (the website user)
+    CHABA_CONGREGATION_PASSWORD=for setting the chaba congregation password
+*/
+
+/** build and run the chaba containers
+docker-compose up -d
+// wait for it building, afterward initialize laravel application
+docker-compose run chaba php artisan key:generate
+docker-compose run chaba php artisan vendor:publish
+docker-compose run chaba php artisan migrate
+
+// (optional) install google fonts locally
+mkdir  public/vendor/fonts
+npm install -g google-font-installer
+gfi download Nunito -d public/vendor/fonts
+
+
+npm run dev
