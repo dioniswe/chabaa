@@ -19,17 +19,17 @@ class AddAdminUsers extends Migration
         });
         // add admin user
         $user = new \App\User();
-        $user->username = config('chaba.CHABA_ADMIN_USER');
+        $user->username = config('chabaa.CHABAA_ADMIN_USER');
         $user->email = 'no@email.yet';
         $user->name = 'Iam Servant';
-        $user->password =  \Illuminate\Support\Facades\Hash::make( config('chaba.CHABA_ADMIN_PASSWORD'));
+        $user->password =  \Illuminate\Support\Facades\Hash::make( config('chabaa.CHABAA_ADMIN_PASSWORD'));
         $user->save();
         // add congregation user
         $user = new \App\User();
-        $user->username = config('chaba.CHABA_CONGREGATION_USER');
+        $user->username = config('chabaa.CHABAA_CONGREGATION_USER');
         $user->email = 'neither@email.yet';
         $user->name = 'Iam congregation';
-        $user->password =  \Illuminate\Support\Facades\Hash::make( config('chaba.CHABA_CONGREGATION_PASSWORD'));
+        $user->password =  \Illuminate\Support\Facades\Hash::make( config('chabaa.CHABAA_CONGREGATION_PASSWORD'));
         $user->save();
     }
 

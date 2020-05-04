@@ -38,7 +38,9 @@ class HomeController extends Controller
      */
     public function churchService()
     {
-        return view('church-service');
+
+        return response()->view('church-service');
+            //->header("Access-Control-Allow-Origin", "*");
     }
 
     /**
@@ -117,6 +119,14 @@ class HomeController extends Controller
      */
     public function recordings()
     {
+        //file_put_contents($filePath=tempnam(sys_get_temp_dir(), 'Hedu'), "HEy du!");
+        //$handle = fopen($filePath,'r');
+        ///$tempfile = tmpfile();
+        //fwrite($tempfile, "Hey du!");
+        //fclose($tempfile);
+        //$ret = Storage::putFile('avatars', $filePath, 'public');
+        //dd($ret);
+        //$ret = Storage::disk('sftp')->put('',$filePath);
         if(Auth::id() == 1 && false) {
             $files = Storage::disk('sftp')->files();
             return view('recordings-readonly')->with('files', $files);

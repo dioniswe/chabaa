@@ -7,9 +7,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Freier Bibelkreis Allmannsweier') }}</title>
+    <title>{{ config('app.name', 'Chabaa') }}</title>
 
     <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- Fonts -->
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
@@ -38,7 +40,7 @@
                                 <i class="fas fa-church fa-3x"></i>
                             </div>
                             <div class="card-body">
-                                Live-Bibelkreis
+                                {{__('Live-Service')}}
                             </div>
                         </div>
                     </a>
@@ -50,7 +52,7 @@
                                 <i class="fas fa-broadcast-tower fa-3x"></i>
                             </div>
                             <div class="card-body">
-                                Radio
+                                {{__('Radio')}}
                             </div>
                         </div>
                     </a>
@@ -62,7 +64,7 @@
                                 <i class="fas fa-comments fa-3x"></i>
                             </div>
                             <div class="card-body">
-                                Austausch
+                                {{__('Chat')}}
                             </div>
                         </div>
                     </a>
@@ -74,7 +76,7 @@
                                 <i class="fas fa-photo-video fa-3x"></i>
                             </div>
                             <div class="card-body">
-                                Aufnahmen
+                                {{__('Recordings')}}
                             </div>
                         </div>
                     </a>
@@ -86,7 +88,7 @@
                                 <i class="fas fa-bible fa-3x"></i>
                             </div>
                             <div class="card-body">
-                                Bücherei
+                                {{__('Library')}}
                             </div>
                         </div>
                     </a>
@@ -98,7 +100,7 @@
                                 <i class="fas fa-calendar-alt fa-3x"></i>
                             </div>
                             <div class="card-body">
-                                Abkündigungen/<br>Termine
+                                {{__('Calendar')}}/<br>{{__('Upcoming')}}
                             </div>
                         </div>
                     </a>
@@ -112,6 +114,9 @@
 </body>
 </html>
 <script>
+    window.default_locale = "{{ config('app.locale') }}";
+    window.fallback_locale = "{{ config('app.fallback_locale') }}";
+    window.messages = @json($messages);
 </script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('vendor/font-awesome/js/all.js') }}"></script>

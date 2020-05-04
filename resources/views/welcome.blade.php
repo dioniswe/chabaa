@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ config('app.name', 'Freier Bibelkreis Allmannsweier') }}</title>
+    <title>{{ config('app.name', 'Our church') }}</title>
     <!-- Fonts -->
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/font-awesome/css/all.css') }}" rel="stylesheet">
@@ -38,7 +38,7 @@
             {{__("greeting_text_part_1")}}
         </div>
         <div class="title m-b-md">
-            {{__("greeting_text_part_2")}}
+            {{config('app.name_dative')}}
         </div>
     </div>
 </div>

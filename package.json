@@ -26,6 +26,7 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.13.0",
         "google-font-installer": "^1.2.0",
+        "lang.js": "^1.1.14",
         "laravel-echo": "^1.7.0",
         "laravel-file-manager": "^2.4.12",
         "socket.io-client": "^2.3.0",

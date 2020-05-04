@@ -1,6 +1,6 @@
 FROM moul/icecast
 
 RUN sudo apt-get -y install nano
-CMD ["/var/www/bibelkreis/docker/icecast/start_modified.sh"]
+CMD ["/opt/start_modified.sh"]
 
 

@@ -4,7 +4,7 @@
 
     <br><br><br>
     <div class="position-ref flex-bottom ">
-        Dieser Bereich befindet sich noch in Arbeit...
+        {{__("work_in_progress")}}
     </div>
 
 @endsection

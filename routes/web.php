@@ -43,4 +43,3 @@ Route::post('/messages', 'HomeController@messageReceived')
 
 Route::get('/get-messages', 'HomeController@getMessages')
     ->name('get-messages');
-

@@ -1,79 +1,118 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+<p align="left"><img src="not-found"  width="00"> TODO logo idea: ice-brick texture </p> 
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+
 </p>
 
-## About Laravel
+<img src="presentation/mobile-front-page.jpg" alt="drawing" width="350"/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img src="presentation/mobile-church-service.jpg" alt="drawing" width="350"/>   
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<img src="presentation/streaming-church-service-1.png" alt="drawing" width="800"/>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<img src="presentation/streaming-church-service-2.png" alt="drawing" width="800"/>   
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## About Chabaa
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Chabaa (acr. for: chabaa aids bible accorded assemblies, כבא in hebrew means to retreat or harden).
+ It is an app supporting churches to use digital capabilities for their gatherings and cooperations and is a response
+ to corona-enforced shutdowns of german churches.
+ It comprises 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- streaming church services through common desktop and mobile web-browsers using hls (latency 15s) and 
+   rtmp (flashvideo, with latency of 2s, but which has fewer browser compatibility).
+- audio streaming church services 
+- Chat area next to the streaming frames
+- file manager for up- and download of church service recordings and for in-browser playing of its contents
+- authentication of church members, administrators and guests
+- [Upcoming] Chat-App with User Management and user status management for encouraging communication between church members  
+- [Upcoming] Management of "calendar" and "About"-contents of the app 
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
+## Learning Chabaa
+A pictured documentation is planned for navigating you through all of chabaa's features 
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Thank you for considering contribution to the chabaa online church app!   
+In brief chabaa integrates a couple of free tools to make an app to aid churches
+in their digital struggle after corona lockdowns. For an overview of reused modules take a look
+at the docker-compose.yml.
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within chabaa, please send a notification via my github account.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The Chabaa online church app is open-sourced software licensed under the [GPL license](https://opensource.org/licenses/GPL-3.0).
+
+
+# Installation
+
+### Before you start
+chabaa occupies the ports 80 (webserver. E.g apache), 8000 (video-streaming), 8008 (webradio), 6001 (websocket) 
+by default. 
+Stop any other applications running on these ports or configure chabaa for using other ports inside chabaas .env file.
+On common vanilla linux application, you'll probably just want to stop apache: sudo service apache2 stop. 
+
+## STEP 1: prerequisite: install and activate docker, install docker-compose, nodejs, npm and git 
+    sudo apt-get install docker-compose docker.io npm nodejs git
+    sudo adduser `whoami` docker
+    sudo systemctl enable docker
+    sudo service docker restart
+
+## STEP 2: install chabaa and its dependencies. In your installation directory do:
+    git clone https://github.com/dioniswe/chabaa.git chabaa
+    cd chabaa
+    composer install
+    npm install
+    npm run dev
+
+### STEP 3 configure your chabaa application.
+ 
+Modify .env: set values for
+
+    ICECAST_SOURCE_PASSWORD to authenticate audio streaming sources
+    ICECAST_MOUNT_NAME for the audio streaming url path
+
+    CHABAA_ADMIN_USER for generating the chabaa admin user (responsible for app contents of startpage and recordings)
+    CHABAA_ADMIN_PASSWORD  for setting the chabaa admin password
+
+    CHABAA_CONGREGATION_USER for generating the chabaa congregation user (the website user)
+    CHABAA_CONGREGATION_PASSWORD for setting the chabaa congregation password
+    
+### STEP 4 Bring up the containers finally
+
+    docker-compose up -d
+
+## STEP 5 after building, initialize your laravel application
+    docker-compose run chabaa php artisan key:generate
+    docker-compose run chabaa php artisan migrate
+
+## Step 6 (optional) install google fonts locally
+    mkdir  public/vendor/fonts
+    npm install -g google-font-installer
+    gfi download Nunito -d public/vendor/fonts
+
+If you want to contribute in development in Step 4 do
+    
+    export USER_ID=$(id -u ${USER});  export GROUP_ID=$(id -g ${USER});  docker-compose up -d
+
+This will make your docker container's users to have the same user id as you have, preventing trouble on shared folders.  
+
+# Usage
+
+Stream to your 'Radio'-Section using any icecast2 compatible client (i.e Butt). In butt settings fill in your server's domain,
+your configured port (default port: 8008) and your configured source authentication key
+
+Stream to your 'Church-Service'-Section using any rtmp-compatible client (i.e OBS). In obs settings fill in your server's domain, 
+your configured port (default port: 8000) and your configured streaming key (default key: stream_name)
+
+Chatting works straight
+
+For the recordings management an admin user has been created on laravel initialization who is privileged to upload files.
+The congregation user is privileged to download and play files.
+
+
+  
+

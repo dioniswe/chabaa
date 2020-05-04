@@ -19,13 +19,13 @@
 
 <script>
     export default {
-        props: ['messages'],
+        props: ['messages', 'channelPrefix'],
         beforeMount() {
             this.$emit('messageinitialize', {});
         },
         created() {
-            // TODO replace app_name in channel with generic one, or set dynamically
-            window.Echo.channel('freier_bibelkreis_allmannsweier_database_message-received-event')
+            var channelPrefix = $("#church-service").data('channel-prefix');
+            window.Echo.channel(channelPrefix + 'message-received-event')
                 .listen('MessageReceivedEvent', (e) => {
                     this.$parent.$refs.messageFrame.messages.push(e.message);
                 });

@@ -10,7 +10,7 @@ const config = {
     },
     http: {
         port: 8000,
-        mediaroot: '/media/streamvideo',
+        mediaroot: '/media/streams',
         webroot: './www',
         allow_origin: '*',
         api: true

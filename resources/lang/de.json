@@ -2,15 +2,25 @@
   "Enter":   "Eintreten",
   "enter":   "Eintreten",
   "internals": "Gemeinde-Bereich",
+  "Internals": "Gemeinde-Bereich",
   "contact": "Kontakt aufnehmen",
+  "Contact": "Kontakt aufnehmen",
   "Username": "Benutzername",
   "Password": "Passwort",
   "enter internal area": "Internen Bereich betreten",
+  "Enter internal area": "Internen Bereich betreten",
   "Forgot Your Password?": "Passwort vergessen?",
   "greeting_text_part_1": "Herzlich Willkommen beim",
-  "greeting_text_part_2": "Freien Bibelkreis Allmannsweier"
-
-
-
-
+  "Live-Service": "Live-Bibelkreis",
+  "Radio": "Radio",
+  "Library": "Bücherei",
+  "Chat": "Austausch",
+  "Recordings": "Aufnahmen",
+  "Calendar": "Termine",
+  "Upcoming": "Abkündigungen",
+  "prayer requests": "Gebetsanliegen",
+  "messages": "Mitteilungen",
+  "salutations": "Grüße",
+  "Proceed": "Weiter",
+  "no files availabe": "keine Dateien vorhanden"
 }

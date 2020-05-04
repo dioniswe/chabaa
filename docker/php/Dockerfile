@@ -1,36 +1,56 @@
 # php:7.4-cli contains a debian buster image
 FROM php:7.4-fpm
 
+
+ARG USER_ID
+ARG GROUP_ID
+
 USER root
+
+# ************** STEP 1 extend image to add necessary libraries ****************** #
+# step 1.1 install php extensions
 RUN apt-get update
 RUN apt-get -y install  libonig-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng-dev zlib1g-dev libxml2-dev \
                         libzip-dev libonig-dev graphviz openssl gnupg-utils libmcrypt4 libmcrypt-dev libssl-dev net-tools \
                         procps
 
 RUN docker-php-ext-install pdo pdo_mysql mysqli mbstring xml json phar zip gd dom session
-#zlib common
 RUN docker-php-ext-enable pdo pdo_mysql mysqli mbstring xml json phar zip gd dom session
-#zlib common
 
-# adduser bibelkreis who will be the database user as well
-RUN addgroup --gid 1001 bibelkreis
-RUN adduser --uid 1001 --gid 1001 --home /home/bibelkreis bibelkreis
-RUN adduser bibelkreis bibelkreis
-RUN adduser bibelkreis www-data
-RUN adduser www-data www-data
-
-WORKDIR /var/www/bibelkreis
+# step 1.2 install xdebug pecl extension
 RUN pecl install redis-5.1.1 \
     && pecl install xdebug-2.8.1 \
     && docker-php-ext-enable redis xdebug
-RUN chown -R www-data:www-data /var/www
-# Install PHP Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-#COPY --chown=www-data:www-data . /var/www/bibelkreis
-# Change current user to www
-#USER bibelkreis
-USER www-data
 
+# step 1.3 install PHP Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+
+#******** STEP 2 add user having same user id as php project-owning host user to ease development and deployment ******#
+#*** see also https://jtreminio.com/blog/running-docker-containers-as-current-host-user/#ok-so-what-actually-works ****#
+RUN [ "echo", "$USER_ID" ]
+RUN [ "echo", "$GROUP_ID" ]
+RUN [ "echo", "${USER_ID}" ]
+RUN [ "echo", "${GROUP_ID}" ]
+RUN if [ ${USER_ID:-0} -ne 0 ] && [ ${GROUP_ID:-0} -ne 0 ]; then \
+    # step 2.1 add user and setup the php project directory
+    # todo check if required to delete www-data? |||||||||| userdel -f chabaa &&\
+    if getent group chabaa ; then groupdel chabaa; fi  &&\
+    groupadd -g ${GROUP_ID} chabaa  &&\
+    useradd -l -u ${USER_ID} -g chabaa chabaa &&\
+    install -d -m 0755 -o chabaa -g chabaa /home/chabaa &&\
+    install -d -m 0755 -o chabaa -g chabaa /var/www/chabaa \
+#
+    # step 2.2 setup permissions for php project directory
+#    chown --changes --silent --no-dereference --recursive \
+ #       --from=33:33 ${USER_ID}:${GROUP_ID} \
+  #      /.composer \
+   #     /var/run/php-fpm \
+    #    /var/lib/php/sessions \
+;fi
+# Change current user to chabaa
+USER chabaa
+WORKDIR /var/www/chabaa
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 

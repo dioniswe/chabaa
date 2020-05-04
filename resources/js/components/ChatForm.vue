@@ -3,7 +3,7 @@
         <div class="row">
         <div class=" col-9">
         <textarea id="btn-input" name="message" class="form-control input-sm"
-                  placeholder="Hier kannst du deine Nachricht eingeben..." v-model="newMessage"
+                  :placeholder="trans.get('messages.to_introduce_yourself')" v-model="newMessage"
                   > </textarea>
         </div>
         <div class="col-3">

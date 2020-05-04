@@ -1,21 +1,25 @@
 version: '3'
 services:
   #-TODO jitsi
-  chaba:
-    image: chaba
-    container_name: chaba
+  chabaa:
+    image: chabaa
+    container_name: chabaa
     build:
       context: .
       dockerfile: ./docker/php/Dockerfile
+      args:
+        - USER_ID
+        - GROUP_ID
     volumes:
       # TODO check, if possible to circumvent static path in docker-compose file
-      - .:/var/www/bibelkreis
+      - .:/var/www/chabaa
       #- .docker/php-fpm.conf:/usr/local/etc/php-fpm.conf
       #- .docker/php.ini:/usr/local/etc/php/php.ini
       #- .:/var/www/html/
       #- app-config-data:/var/www/.config/
     environment:
-      CONTAINER_ROLE: app
+      - USER_ID
+      - GROUP_ID
     restart: unless-stopped
     networks:
       - mynet
@@ -24,10 +28,10 @@ services:
     container_name: web
     image: nginx:1.17
     depends_on:
-      - chaba
+      - chabaa
     volumes:
       # TODO check, if possible to circumvent static path in docker-compose file
-      - .:/var/www/bibelkreis
+      - .:/var/www/chabaa
       #- .:/var/www/html/:ro
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
       - ./docker/nginx/ssl/:/etc/nginx/ssl/
@@ -50,7 +54,7 @@ services:
       - 3306:3306
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_USER: ${DB_USER}
+      MYSQL_USER: ${DB_USERNAME}
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     networks:
@@ -77,18 +81,24 @@ services:
     depends_on:
       - redis
       - chabaa
+    working_dir: /var/www/chabaa
     volumes:
 # TODO check, if possible to circumvent static path in docker-compose file
-      - .:/var/www/bibelkreis
+      - .:/var/www/chabaa
     restart: on-failure
     environment:
       CONTAINER_ROLE: queue
     networks:
       - mynet
 
-  ftp:
-    container_name: ftp
-    image: vimagick/vsftpd
+  sftp:
+    image: atmoz/sftp
+    #volumes:
+      #- ./docker/sftp/upload:/home/foo/upload
+    # TODO bind mount instead of hosting in docker container
+    #command: ${SFTP_USER}:${SFTP_PASSWORD}:${SFTP_UID}
+    environment:
+      - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:::upload
     networks:
       - mynet
 
@@ -97,11 +107,11 @@ services:
     build:
       context: .
       dockerfile: docker/icecast/Dockerfile
-    working_dir: /var/www/bibelkreis
-    command: docker/icecast/start_modified.sh
+    working_dir: /var/www/chabaa
+    command: /opt/start_modified.sh
     volumes:
       #- ./storage/logs/icecast:/var/log/icecast2
-      - /var/www/bibelkreis/docker/icecast/start_modified.sh/:/var/www/bibelkreis/docker/icecast/start_modified.sh:ro
+      - ./docker/icecast/start_modified.sh/:/opt/start_modified.sh:ro
       - /etc/localtime:/etc/localtime:ro
     environment:
       - ICECAST_SOURCE_PASSWORD=${ICECAST_SOURCE_PASSWORD}
@@ -110,7 +120,7 @@ services:
       - ICECAST_PASSWORD=${ICECAST_MOUNT_PASSWORD}
       - ICECAST_PORT=${ICECAST_PORT}
     ports:
-# TODO set icecast port correctly through environment variable into config
+    # TODO set icecast port correctly through environment variable into config
       - 8008:8008
     networks:
       - mynet

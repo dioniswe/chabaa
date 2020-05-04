@@ -5,7 +5,7 @@
 
 
     <div class="flex-center ">
-        <iframe src="{{url(request()->getSchemeAndHttpHost() . ':8008/' . config('chaba.ICECAST_MOUNT_NAME'))}}" id="iframeAudio"></iframe>
+        <iframe src="{{url(request()->getSchemeAndHttpHost() . ':8008/' . config('chabaa.ICECAST_MOUNT_NAME'))}}" id="iframeAudio"></iframe>
     </div>
 
 @endsection

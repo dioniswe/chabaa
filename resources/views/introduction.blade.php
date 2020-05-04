@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
-                        Hier kannst du deinen Namen bekanntgeben?
+                        {{__("messages.to_introduce_yourself")}}
 
                         <div class="input-group"><br>
                             <input type="text" name="name" value="Gast" class="align-center form-control input-sm"
@@ -15,7 +15,7 @@
                         </div>
                     </div>
                 </div>
-                <input type="submit" value="Weiter" class="btn btn-primary btn-sm">
+                <input type="submit" value="{{__("Proceed")}}" class="btn btn-primary btn-sm">
             </div>
         </form>
 @endsection

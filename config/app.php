@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Freier Bibelkreis Allmannsweier'),
+    'name' => env('APP_NAME', 'Chabaa Bible Accorded Assembly'),
+    'name_dative' => env('APP_NAME_DATIVE', 'The Chabaa Bible Accorded Assembly'),
 
     /*
     |--------------------------------------------------------------------------
@@ -174,6 +175,8 @@ return [
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        KgBot\LaravelLocalization\LaravelLocalizationServiceProvider::class,
+        App\Providers\LocaleViewServiceProvider::class,
 
     ],
 
@@ -226,7 +229,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        "ExportLocalization" => "KgBot\\LaravelLocalization\\Facades\\ExportLocalizations"
     ],
 
 ];

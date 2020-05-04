@@ -6,7 +6,7 @@
 @section('script')
     @if (count($files)==0)
 
-        <div class="alert alert-warning">{{__("keine Datensätze vorhanden")}}</div>
+        <div class="alert alert-warning">{{__("no files available")}}</div>
 
     @else
         <table class="table table-condensed table-striped">

@@ -6,14 +6,14 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container" id="church-service" data-channel-prefix="{{config("database.redis.options.prefix")}}">
         <div class="row">
             <div class="col-lg-4">
                 <div class="chat-container">
                     <div class="col-sm-12 message_section">
                         <div class="row">
                             <div class="new_message_head">
-                                Gebetesanliegen, Grüße, Mitteilungen
+                                {{__('prayer requests')}}, {{__('salutations')}}, {{__('messages')}}
                             </div>
                             <chat-messages v-on:messageinitialize="getMessages" :messages="messages" ref="messageFrame"></chat-messages>
                             <chat-form
@@ -38,14 +38,15 @@
                     <source src="{{url(request()->getSchemeAndHttpHost() . ':8000/' )}}live/stream_name/index.m3u8"
                             type="application/x-mpegURL"/>
                     <p class="vjs-no-js">
-                        Bitte warten, bis die Übertragung startet. Technische Vorraussetzungen sind JavaScript, und
-                        ein
-                        Browser,
-                        welcher Html5 Videos unterstützt:
+                        {{__('messages.unable_to_play_video_message')}}
                         <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
                     </p>
                 </video>
             </div>
         </div>
     </div>
+@endsection
+@section('javascript')
+<script>
+</script>
 @endsection
