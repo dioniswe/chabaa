@@ -59,7 +59,6 @@ On common vanilla linux application, you'll probably just want to stop apache: s
     sudo apt-get install docker-compose docker.io npm nodejs git
     sudo adduser `whoami` docker
     sudo systemctl enable docker
-    sudo service docker restart
 
 ## STEP 2: install chabaa and its dependencies. In your installation directory do:
     git clone https://github.com/dioniswe/chabaa.git chabaa
@@ -68,9 +67,9 @@ On common vanilla linux application, you'll probably just want to stop apache: s
     npm install
     npm run dev
 
-### STEP 3 configure your chabaa application.
+## STEP 3 configure your chabaa application.
  
-Modify .env: set values for
+rename.env.example to .env and modify to contain values for
 
     ICECAST_SOURCE_PASSWORD to authenticate audio streaming sources
     ICECAST_MOUNT_NAME for the audio streaming url path
@@ -81,9 +80,9 @@ Modify .env: set values for
     CHABAA_CONGREGATION_USER for generating the chabaa congregation user (the website user)
     CHABAA_CONGREGATION_PASSWORD for setting the chabaa congregation password
     
-### STEP 4 Bring up the containers finally
+## STEP 4 Bring up the containers finally
 
-    docker-compose up -d
+    export USER_ID=$(id -u ${USER});  export GROUP_ID=$(id -g ${USER});  docker-compose up -d
 
 ## STEP 5 after building, initialize your laravel application
     docker-compose run chabaa php artisan key:generate
@@ -91,14 +90,8 @@ Modify .env: set values for
 
 ## Step 6 (optional) install google fonts locally
     mkdir  public/vendor/fonts
-    npm install -g google-font-installer
-    gfi download Nunito -d public/vendor/fonts
-
-If you want to contribute in development in Step 4 do
-    
-    export USER_ID=$(id -u ${USER});  export GROUP_ID=$(id -g ${USER});  docker-compose up -d
-
-This will make your docker container's users to have the same user id as you have, preventing trouble on shared folders.  
+    sudo npm install -g google-font-installer
+    gfi download Nunito -d public/vendor/fonts  
 
 # Usage
 

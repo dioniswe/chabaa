@@ -18,8 +18,7 @@ services:
       #- .:/var/www/html/
       #- app-config-data:/var/www/.config/
     environment:
-      - USER_ID
-      - GROUP_ID
+      CONTAINER_ROLE: chabaa
     restart: unless-stopped
     networks:
       - mynet
@@ -74,20 +73,18 @@ services:
       - mynet
 
   queue:
+    image: chabaa
     container_name: queue
-    build:
-      context: .
-      dockerfile: ./docker/php-cli/Dockerfile
     depends_on:
-      - redis
       - chabaa
-    working_dir: /var/www/chabaa
+      - redis
     volumes:
-# TODO check, if possible to circumvent static path in docker-compose file
       - .:/var/www/chabaa
     restart: on-failure
     environment:
+      APP_ENV: local
       CONTAINER_ROLE: queue
+    working_dir: /var/www/chabaa
     networks:
       - mynet
 

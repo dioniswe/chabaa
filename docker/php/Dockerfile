@@ -28,10 +28,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 #******** STEP 2 add user having same user id as php project-owning host user to ease development and deployment ******#
 #*** see also https://jtreminio.com/blog/running-docker-containers-as-current-host-user/#ok-so-what-actually-works ****#
-RUN [ "echo", "$USER_ID" ]
-RUN [ "echo", "$GROUP_ID" ]
-RUN [ "echo", "${USER_ID}" ]
-RUN [ "echo", "${GROUP_ID}" ]
 RUN if [ ${USER_ID:-0} -ne 0 ] && [ ${GROUP_ID:-0} -ne 0 ]; then \
     # step 2.1 add user and setup the php project directory
     # todo check if required to delete www-data? |||||||||| userdel -f chabaa &&\
@@ -47,9 +43,11 @@ RUN if [ ${USER_ID:-0} -ne 0 ] && [ ${GROUP_ID:-0} -ne 0 ]; then \
   #      /.composer \
    #     /var/run/php-fpm \
     #    /var/lib/php/sessions \
+
 ;fi
-# Change current user to chabaa
+#TOOO handle case when no USER_ID has been given
 USER chabaa
+# Change current user to chabaa
 WORKDIR /var/www/chabaa
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
@@ -93,3 +91,7 @@ EXPOSE 9000
 
 
 #  npm run websocket
+
+COPY ./docker/php-cli/startup.sh /usr/local/bin/startup.sh
+
+CMD [ "/usr/local/bin/startup.sh"]
