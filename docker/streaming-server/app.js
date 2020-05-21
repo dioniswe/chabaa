@@ -1,4 +1,4 @@
-const NodeMediaServer = require('./');
+const NodeMediaServer = require('node-media-server');
 
 const config = {
     rtmp: {
@@ -26,11 +26,6 @@ const config = {
                 dashFlags: '[f=dash:window_size=3:extra_window_size=5]'
             }
         ]
-    },
-    https: {
-        port: 8443,
-        key: './privatekey.pem',
-        cert: './certificate.pem',
     },
     auth: {
         api: true,

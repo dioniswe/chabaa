@@ -64,7 +64,6 @@ services:
     build:
       context: .
       dockerfile: ./docker/redis/Dockerfile
-    #image: redis:latest
     volumes:
       - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
     ports:
@@ -72,6 +71,7 @@ services:
     networks:
       - mynet
 
+  # queue set up according to https://laravel-news.com/laravel-scheduler-queue-docker
   queue:
     image: chabaa
     container_name: queue
