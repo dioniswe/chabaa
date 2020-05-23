@@ -43,6 +43,16 @@ class HomeController extends Controller
     }
 
     /**
+     * church user management
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function user()
+    {
+        return view('user');
+    }
+
+    /**
      * radio
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -86,6 +96,17 @@ class HomeController extends Controller
         }
         $messages = Message::with('user')->get();
         return view('chat')->with('messages', $messages);
+    }
+
+    /**
+     * logout
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect()->route('login');
     }
 
     /**

@@ -65,5 +65,8 @@ Route::group(array('prefix' => \Illuminate\Support\Facades\Config::get('app.loca
         ->name('introduction');
     Route::get('/{recordings}', 'HomeController@recordings')
         ->name('recordings');
-
+    Route::get('/{user}', 'HomeController@user')
+        ->name('user');
+    Route::get('/{logout}', 'HomeController@logout')
+        ->name('logout');
 });

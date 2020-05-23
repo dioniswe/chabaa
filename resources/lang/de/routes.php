@@ -11,5 +11,6 @@ return array(
     'recordings' => 'aufnahmen',
     'introduction' => 'vorstellung',
     'library' => 'bücherei',
+    'user' => 'Benutzer',
     'announcements' => 'abkündigungen',
 );

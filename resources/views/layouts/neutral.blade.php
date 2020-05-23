@@ -82,13 +82,13 @@
                     </a>
                 </div>
                 <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
-                    <a href="{{route('library',__('routes.library'))}}">
+                    <a href="{{route('user',__('routes.user'))}}">
                         <div class="card">
                             <div class="card-image-top ">
-                                <i class="fas fa-bible fa-3x"></i>
+                                <i class="fas fa-user fa-3x"></i>
                             </div>
                             <div class="card-body">
-                                {{__('Library')}}
+                                {{__('member')}}
                             </div>
                         </div>
                     </a>

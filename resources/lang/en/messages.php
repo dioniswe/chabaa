@@ -5,4 +5,5 @@ return [
     "to_introduce_yourself" => "Do you want to introduce yourself?",
     "work_in_progress" => "This area is still a work in progress.",
     "give_your_message" => "This is the place to make your messages!",
+    "user_management" => "Settings and personal data area",
 ];

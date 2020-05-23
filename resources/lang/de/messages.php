@@ -4,4 +4,5 @@ return [
     "to_introduce_yourself" => "Hier kannst du deinen Namen bekanntgeben!",
     "give_your_message" => "Hier kannst du deine Mitteilungen machen!",
     "work_in_progress" => "Dieser Bereich befindet sich noch in Arbeit...",
+    "user_management" => "Persönliche Daten und Einstellungen",
 ];

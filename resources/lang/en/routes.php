@@ -11,5 +11,6 @@ return array(
     'recordings' => 'recordings',
     'introduction' => 'introduction',
     'library' => 'library',
+    'user' => 'user',
     'announcements' => 'announcements',
 );
