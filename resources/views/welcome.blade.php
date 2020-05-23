@@ -17,7 +17,7 @@
         <div class="links top-right">
             @auth
 
-                <a href="{{ url('/home') }}">{{__("enter")}}</a>
+                <a href="{{ route('home', __('routes.home')) }}">{{__("enter")}}</a>
             @else
                 <div class="row">
                     <div id="enter_internals" class="col-xs-6">

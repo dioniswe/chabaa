@@ -81,7 +81,17 @@ return [
     |
     */
 
-    'locale' => 'de',
+    'locale' => 'en',
+
+    /*
+     * added, denis 20.05.2020: for other supported locales in your app.
+     */
+    'alt_langs' => array ('en','fr'),
+
+    /*
+     * added, denis 20.05.2020: Prefix of selected locale  - leave empty (set in runtime)
+     */
+    'locale_prefix' => '',
 
     /*
     |--------------------------------------------------------------------------

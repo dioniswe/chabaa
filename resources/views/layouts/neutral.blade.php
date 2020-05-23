@@ -34,7 +34,7 @@
         <div class="links">
             <div class="row">
                 <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
-                    <a href="{{route('church-service')}}">
+                    <a href="{{route('church_service',__('routes.church_service'))}}">
                         <div class="card">
                             <div class="card-image-top ">
                                 <i class="fas fa-church fa-3x"></i>
@@ -46,7 +46,7 @@
                     </a>
                 </div>
                 <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
-                    <a href="{{route('radio')}}">
+                    <a href="{{route('radio',__('routes.radio'))}}">
                         <div class="card">
                             <div class="card-image-top ">
                                 <i class="fas fa-broadcast-tower fa-3x"></i>
@@ -58,7 +58,7 @@
                     </a>
                 </div>
                 <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
-                    <a href="{{route('chat')}}">
+                    <a href="{{route('chat',__('routes.chat'))}}">
                         <div class="card">
                             <div class="card-image-top ">
                                 <i class="fas fa-comments fa-3x"></i>
@@ -70,7 +70,7 @@
                     </a>
                 </div>
                 <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
-                    <a href="{{route('recordings')}}">
+                    <a href="{{route('recordings',__('routes.recordings'))}}">
                         <div class="card">
                             <div class="card-image-top ">
                                 <i class="fas fa-photo-video fa-3x"></i>
@@ -82,7 +82,7 @@
                     </a>
                 </div>
                 <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
-                    <a href="{{route('library')}}">
+                    <a href="{{route('library',__('routes.library'))}}">
                         <div class="card">
                             <div class="card-image-top ">
                                 <i class="fas fa-bible fa-3x"></i>
@@ -94,7 +94,7 @@
                     </a>
                 </div>
                 <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
-                    <a href="{{route('announcements')}}">
+                    <a href="{{route('announcements',__('routes.announcements'))}}">
                         <div class="card">
                             <div class="card-image-top ">
                                 <i class="fas fa-calendar-alt fa-3x"></i>

@@ -39,8 +39,7 @@ class HomeController extends Controller
     public function churchService()
     {
 
-        return response()->view('church-service');
-            //->header("Access-Control-Allow-Origin", "*");
+        return view('church-service');
     }
 
     /**
@@ -83,7 +82,7 @@ class HomeController extends Controller
         $introducedName = $request->session()->get('introducedName');
         $hasIntroducedHimself = !empty($introducedName);
         if (!$hasIntroducedHimself) {
-            return redirect('Vorstellung');
+            return redirect(__('routes.introduction'));
         }
         $messages = Message::with('user')->get();
         return view('chat')->with('messages', $messages);
