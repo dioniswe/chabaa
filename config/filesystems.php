@@ -69,6 +69,7 @@ return [
             'host' => env('SFTP_HOST'),
             'username' => env('SFTP_USER'),
             'password' => env('SFTP_PASSWORD'),
+            'root' => 'upload',
         ],
 
         'ftp' => [
