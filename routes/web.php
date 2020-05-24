@@ -22,7 +22,11 @@ Route::get('/', function () {
 /*
  *  Set up locale and locale_prefix if other language is selected
  */
-if (in_array(\Illuminate\Support\Facades\Request::segment(1), \Illuminate\Support\Facades\Config::get('app.alt_langs'))) {
+$altLanguages = \Illuminate\Support\Facades\Config::get('app.alt_langs');
+if(is_null($altLanguages)){
+    $altLanguages = [];
+}
+if (in_array(\Illuminate\Support\Facades\Request::segment(1), $altLanguages)) {
 
     \Illuminate\Support\Facades\App::setLocale(\Illuminate\Support\Facades\Request::segment(1));
     \Illuminate\Support\Facades\Config::set('app.locale_prefix', \Illuminate\Support\Facades\Request::segment(1));

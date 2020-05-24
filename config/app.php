@@ -81,7 +81,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => env('APP_LANGUAGE','en'),
 
     /*
      * added, denis 20.05.2020: for other supported locales in your app.
