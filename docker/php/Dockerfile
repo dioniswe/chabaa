@@ -12,7 +12,7 @@ USER root
 RUN apt-get update
 RUN apt-get -y install  libonig-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng-dev zlib1g-dev libxml2-dev \
                         libzip-dev libonig-dev graphviz openssl gnupg-utils libmcrypt4 libmcrypt-dev libssl-dev net-tools \
-                        procps
+                        procps vim
 
 RUN docker-php-ext-install pdo pdo_mysql mysqli mbstring xml json phar zip gd dom session
 RUN docker-php-ext-enable pdo pdo_mysql mysqli mbstring xml json phar zip gd dom session
@@ -21,6 +21,16 @@ RUN docker-php-ext-enable pdo pdo_mysql mysqli mbstring xml json phar zip gd dom
 RUN pecl install redis-5.1.1 \
     && pecl install xdebug-2.8.1 \
     && docker-php-ext-enable redis xdebug
+
+RUN \
+if [ -z ${XDEBUG_ENABLE} ]; then \
+    echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.remote_port=9000" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.remote_handler=dbgp" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.remote_connect_back=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.idekey=mertblog.net" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+;fi
 
 # step 1.3 install PHP Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

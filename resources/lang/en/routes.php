@@ -13,4 +13,5 @@ return array(
     'library' => 'library',
     'user' => 'user',
     'announcements' => 'announcements',
+    'logout' => 'logout',
 );

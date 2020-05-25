@@ -1,4 +1,5 @@
 {
+  "logout":   "Ausloggen",
   "Enter":   "Eintreten",
   "enter":   "Eintreten",
   "internals": "Gemeinde-Bereich",
@@ -6,6 +7,7 @@
   "contact": "Kontakt aufnehmen",
   "Contact": "Kontakt aufnehmen",
   "Username": "Benutzername",
+  "username": "Benutzername",
   "Password": "Passwort",
   "enter internal area": "Internen Bereich betreten",
   "Enter internal area": "Internen Bereich betreten",
@@ -22,5 +24,6 @@
   "messages": "Mitteilungen",
   "salutations": "Grüße",
   "Proceed": "Weiter",
-  "no files availabe": "keine Dateien vorhanden"
+  "no files availabe": "keine Dateien vorhanden",
+  "user": "Benutzer"
 }

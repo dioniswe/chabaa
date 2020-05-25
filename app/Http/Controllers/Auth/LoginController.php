@@ -45,4 +45,12 @@ class LoginController extends Controller
     {
         return 'username';
     }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    protected function redirectTo()
+    {
+        return route('home', __('routes.home'));
+    }
 }

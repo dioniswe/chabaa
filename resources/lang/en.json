@@ -1,4 +1,6 @@
 {
+
+  "logout":   "logout",
   "Enter":   "Enter",
   "enter":   "enter",
   "internals": "online church area",
@@ -6,6 +8,7 @@
   "contact": "contact us",
   "Contact": "Contact Us",
   "Username": "Username",
+  "username": "username",
   "Password": "Password",
   "enter internal area": "enter online church area",
   "Enter internal area": "Enter Online Church Area",
@@ -22,5 +25,6 @@
   "messages": "messages",
   "salutations": "salutations",
   "Proceed": "Proceed",
-  "no files availabe": "no files available"
+  "no files availabe": "no files available",
+  "user": "User"
 }

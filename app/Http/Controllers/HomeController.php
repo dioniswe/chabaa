@@ -38,7 +38,6 @@ class HomeController extends Controller
      */
     public function churchService()
     {
-
         return view('church-service');
     }
 

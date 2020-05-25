@@ -48,6 +48,9 @@ Route::post('/introduction', 'HomeController@processIntroduction')
 Route::post('/messages', 'HomeController@messageReceived')
     ->name('messages');
 
+Route::get('/user-settings', 'HomeController@userSettings')
+    ->name('user-settings');
+
 Route::get('/get-messages', 'HomeController@getMessages')
     ->name('get-messages');
 

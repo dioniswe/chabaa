@@ -30,7 +30,7 @@
         </div>
     @endif
 
-    <div class="content container">
+    <div class="content container" id="app-navigation">
         <div class="links">
             <div class="row">
                 <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
@@ -88,7 +88,7 @@
                                 <i class="fas fa-user fa-3x"></i>
                             </div>
                             <div class="card-body">
-                                {{__('member')}}
+                                {{__('user')}}
                             </div>
                         </div>
                     </a>

@@ -11,6 +11,7 @@ return array(
     'recordings' => 'aufnahmen',
     'introduction' => 'vorstellung',
     'library' => 'bücherei',
-    'user' => 'Benutzer',
+    'user' => 'benutzer',
     'announcements' => 'abkündigungen',
+    'logout' => 'ausloggen',
 );
