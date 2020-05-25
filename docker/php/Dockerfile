@@ -53,5 +53,6 @@ WORKDIR /var/www/chabaa
 EXPOSE 9000
 
 COPY ./docker/php/startup.sh /usr/local/bin/startup.sh
+RUN chmod g+x,o+x /usr/local/bin/startup.sh
 
 CMD [ "/usr/local/bin/startup.sh"]
