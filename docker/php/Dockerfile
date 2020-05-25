@@ -52,6 +52,6 @@ WORKDIR /var/www/chabaa
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 
-COPY ./docker/php-cli/startup.sh /usr/local/bin/startup.sh
+COPY ./docker/php/startup.sh /usr/local/bin/startup.sh
 
 CMD [ "/usr/local/bin/startup.sh"]
