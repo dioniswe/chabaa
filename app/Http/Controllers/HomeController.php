@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\MessageReceivedEvent;
 use App\Message;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -138,15 +139,7 @@ class HomeController extends Controller
      */
     public function recordings()
     {
-        //file_put_contents($filePath=tempnam(sys_get_temp_dir(), 'Hedu'), "HEy du!");
-        //$handle = fopen($filePath,'r');
-        ///$tempfile = tmpfile();
-        //fwrite($tempfile, "Hey du!");
-        //fclose($tempfile);
-        //$ret = Storage::putFile('avatars', $filePath, 'public');
-        //dd($ret);
-        //$ret = Storage::disk('sftp')->put('',$filePath);
-        if(Auth::id() == 1 && false) {
+        if(Auth::id() == User::CONGREGATION_USER_ID) {
             $files = Storage::disk('sftp')->files();
             return view('recordings-readonly')->with('files', $files);
         }

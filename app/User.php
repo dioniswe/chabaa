@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Session;
 
 class User extends Authenticatable
 {
+    const ADMIN_USER_ID  = 1;
+    const CONGREGATION_USER_ID  = 2;
+
     use Notifiable;
 
     /**

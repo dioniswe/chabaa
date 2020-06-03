@@ -187,6 +187,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         KgBot\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         App\Providers\LocaleViewServiceProvider::class,
+        // TODO check necessity of below debugbar statement
+        Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
@@ -239,6 +241,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        // TODO check necessity of below debugbar statement
+        'DebugBar'  => 'Barryvdh\Debugbar\Facade',
         "ExportLocalization" => "KgBot\\LaravelLocalization\\Facades\\ExportLocalizations"
     ],
 

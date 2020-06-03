@@ -28,7 +28,7 @@
         "google-font-installer": "^1.2.0",
         "lang.js": "^1.1.14",
         "laravel-echo": "^1.7.0",
-        "laravel-file-manager": "^2.4.12",
+        "laravel-file-manager": "github:dioniswe/vue-laravel-file-manager#master",
         "socket.io-client": "^2.3.0",
         "video.js": "^7.7.5",
         "vuex": "^3.1.3"

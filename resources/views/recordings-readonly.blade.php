@@ -2,24 +2,10 @@
 
 @section('content')
 
+    <div class="container" >
+        <file-manager  v-bind:settings='{"readOnly": true, "mobileFriendly": true, "compactMode": true, "singleDiskMode": true}' v-bind:style="{ height: '600px' }"></file-manager>
+    </div>
 @endsection
 @section('script')
-    @if (count($files)==0)
 
-        <div class="alert alert-warning">{{__("no files available")}}</div>
-
-    @else
-        <table class="table table-condensed table-striped">
-            <tr>
-                <th>Name</th>
-            </tr>
-            @foreach($files as $file)
-                <tr>
-                    <td >
-                        {{ $file->name }}
-                    </td>
-                </tr>
-            @endforeach
-        </table>
-    @endif
 @endsection
