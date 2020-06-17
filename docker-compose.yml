@@ -67,8 +67,6 @@ services:
       dockerfile: ./docker/redis/Dockerfile
     volumes:
       - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
-    ports:
-      - 6379:6379
     networks:
       - mynet
 
@@ -90,6 +88,7 @@ services:
       - mynet
 
   sftp:
+    container_name: sftp
     image: atmoz/sftp
     #volumes:
       #- ./docker/sftp/upload:/home/foo/upload

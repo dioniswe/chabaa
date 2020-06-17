@@ -94,7 +94,7 @@ class HomeController extends Controller
         if (!$hasIntroducedHimself) {
             return redirect(__('routes.introduction'));
         }
-        $messages = Message::with('user')->get();
+        $messages = Message::recentMessages()->get();
         return view('chat')->with('messages', $messages);
     }
 
@@ -166,7 +166,7 @@ class HomeController extends Controller
     public function getMessages(Request $request)
     {
         Log::info('received get all messages request');
-        $messages = Message::with('user')->get();
+        $messages = Message::recentMessages()->get();
         Log::info($messages);
         return (string) $messages;
     }

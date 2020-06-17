@@ -5,7 +5,8 @@ import Echo from 'laravel-echo';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import FileManager from 'laravel-file-manager'
-import videojs from 'video.js'
+//import videojs from 'video.js'
+//window.videojs = videojs;
 
 //Vue.use(videojs);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);

@@ -1,8 +1,3 @@
-<p align="left"><img src="not-found"  width="00"> TODO logo idea: ice-brick texture </p> 
-
-<p align="center">
-
-</p>
 <img src="presentation/streaming-church-service-1.png" alt="drawing" width="800"/>
 
 <img src="presentation/streaming-church-service-2.png" alt="drawing" width="800"/>   

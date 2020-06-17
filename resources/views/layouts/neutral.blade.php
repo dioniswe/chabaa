@@ -12,7 +12,8 @@
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <!--script src="{{asset('vendor/video.js/video.js')}}"></script-->
     <!-- Fonts -->
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/font-awesome/css/all.css') }}" rel="stylesheet">
