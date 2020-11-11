@@ -15,6 +15,8 @@ return [
 
     'name' => env('APP_NAME', 'Chabaa Bible Accorded Assembly'),
     'name_dative' => env('APP_NAME_DATIVE', 'The Chabaa Bible Accorded Assembly'),
+    'streaming_server_port' => env('STREAMING_SERVER_PORT', 8000),
+    'streaming_server_html5_streaming_key' => env('STREAMING_SERVER_HTML5_STREAMING_KEY', 'stream_name'),
 
     /*
     |--------------------------------------------------------------------------

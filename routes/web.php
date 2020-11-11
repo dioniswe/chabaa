@@ -23,7 +23,7 @@ Route::get('/', function () {
  *  Set up locale and locale_prefix if other language is selected
  */
 $altLanguages = \Illuminate\Support\Facades\Config::get('app.alt_langs');
-if(is_null($altLanguages)){
+if (is_null($altLanguages)) {
     $altLanguages = [];
 }
 if (in_array(\Illuminate\Support\Facades\Request::segment(1), $altLanguages)) {
@@ -36,10 +36,9 @@ if (in_array(\Illuminate\Support\Facades\Request::segment(1), $altLanguages)) {
 /*
  * Set up route patterns - patterns will have to be the same as in translated route for current language
  */
-foreach(\Illuminate\Support\Facades\Lang::get('routes') as $k => $v) {
+foreach (\Illuminate\Support\Facades\Lang::get('routes') as $k => $v) {
     Route::pattern($k, $v);
 }
-
 
 
 Route::post('/introduction', 'HomeController@processIntroduction')
@@ -48,17 +47,19 @@ Route::post('/introduction', 'HomeController@processIntroduction')
 Route::post('/messages', 'HomeController@messageReceived')
     ->name('messages');
 
-Route::get('/user-settings', 'HomeController@userSettings')
+Route::any('/user-settings', 'HomeController@userSettings')
     ->name('user-settings');
 
 Route::get('/get-messages', 'HomeController@getMessages')
     ->name('get-messages');
 
-Route::group(array('prefix' => \Illuminate\Support\Facades\Config::get('app.locale_prefix')), function()
-{
+Route::group(
+    [
+        'prefix' => \Illuminate\Support\Facades\Config::get('app.locale_prefix')
+    ], function () {
     Route::get('/{home}', 'HomeController@index')
         ->name('home');
-    Route::get('/{church_service}','HomeController@churchService')
+    Route::get('/{church_service}', 'HomeController@churchService')
         ->name('church_service');
     Route::get('/{radio}', 'HomeController@radio')
         ->name('radio');

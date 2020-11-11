@@ -6,6 +6,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import FileManager from 'laravel-file-manager'
 import videojs from 'video.js'
+import 'videojs-hlsjs-progress-control'
 window.videojs = videojs;
 
 //Vue.use(videojs);

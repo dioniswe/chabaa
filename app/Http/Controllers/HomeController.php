@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\ChatChannels;
+use App\Enum\StreamingType;
 use App\Events\MessageReceivedEvent;
 use App\Message;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
@@ -39,7 +43,19 @@ class HomeController extends Controller
      */
     public function churchService()
     {
-        return view('church-service');
+        $isFlashVideoSetting = \session('streamingVideoType') == StreamingType::STREAMING_TYPE_FLASH;
+        $streamingServerPort = Config::get('app.streaming_server_port');
+        $streamingServerHtml5StreamingKey = Config::get('app.streaming_server_html5_streaming_key');
+
+            $videoSource = url(request()->getSchemeAndHttpHost()).':'.$streamingServerPort.'/live/'.$streamingServerHtml5StreamingKey.'/index.m3u8';
+
+            $flashVideoSource = url(request()->getSchemeAndHttpHost()).':'.$streamingServerPort.'/live/'.$streamingServerHtml5StreamingKey.'.flv';
+
+        return view('church-service')
+            ->with('isFlashVideoSetting', $isFlashVideoSetting)
+            ->with('isFlashVideoSettingLiteral', $isFlashVideoSetting ? 'true' : 'false')
+            ->with('videoSource', $videoSource)
+            ->with('flashVideoSource', $flashVideoSource);
     }
 
     /**
@@ -50,6 +66,21 @@ class HomeController extends Controller
     public function user()
     {
         return view('user');
+    }
+
+    /**
+     * church user management apply settings
+     */
+    public function userSettings(Request $request)
+    {
+        $name = $request->get('name');
+        $streamingVideoType = $request->get('streamingVideoType');
+        $request->session()->put('name', $name);
+        $request->session()->put('streamingVideoType', $streamingVideoType);
+
+        $request->session()->flash('info', 'die Einstellungen wurden übernommen');
+        ;
+        return redirect()->to(route('user',__('routes.user')));
     }
 
     /**
@@ -89,13 +120,14 @@ class HomeController extends Controller
      */
     public function chat(Request $request)
     {
-        $introducedName = $request->session()->get('introducedName');
+        $introducedName = $request->session()->get('name');
         $hasIntroducedHimself = !empty($introducedName);
-        if (!$hasIntroducedHimself) {
-            return redirect(__('routes.introduction'));
-        }
         $messages = Message::recentMessages()->get();
-        return view('chat')->with('messages', $messages);
+        $channels = ChatChannels::getChatChannels();
+        return view('chat')
+            ->with('messages', $messages)
+            ->with('hasIntroducedHimself', $hasIntroducedHimself)
+            ->with('channels', $channels);
     }
 
     /**
@@ -139,6 +171,7 @@ class HomeController extends Controller
      */
     public function recordings()
     {
+
         if(Auth::id() == User::CONGREGATION_USER_ID) {
             $files = Storage::disk('sftp')->files();
             return view('recordings-readonly')->with('files', $files);

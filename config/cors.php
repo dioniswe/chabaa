@@ -15,7 +15,8 @@ return [
     |
     */
 
-    'paths' => ['api/*'],
+    // TODO double check change
+    'paths' => ['*'],
 
     'allowed_methods' => ['*'],
 
@@ -23,7 +24,8 @@ return [
 
     'allowed_origins_patterns' => [],
 
-    'allowed_headers' => ['*'],
+    // TODO double check change
+    'allowed_headers' => ['*', 'sx-socket-id'],
 
     'exposed_headers' => [],
 

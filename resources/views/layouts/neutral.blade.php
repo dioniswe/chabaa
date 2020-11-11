@@ -8,28 +8,28 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Chabaa') }}</title>
-
-    <!-- Scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <!--script src="{{asset('vendor/video.js/video.js')}}"></script-->
     <!-- Fonts -->
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/font-awesome/css/all.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/video.js/video-js.css') }}" rel="stylesheet">
     <link href="{{ asset('css/neutral.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css">
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!--script src="https://cdn.rawgit.com/video-dev/hls.js/18bb552/dist/hls.min.js"></script-->
+    <!--script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script-->
+    <script src="https://cdn.rawgit.com/video-dev/hls.js/18bb552/dist/hls.min.js"></script>
+    <script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/videojs-flash@2/dist/videojs-flash.min.js"></script>
+    <script src="https://cdn.plyr.io/3.6.2/plyr.js"></script>
 
     @yield('head')
 </head>
 <body>
 <div id="app">
 
-    @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            {{ session('status') }}
-        </div>
-    @endif
 
     <div class="content container" id="app-navigation">
         <div class="links">
@@ -108,9 +108,16 @@
                 </div>
             </div>
         </div>
+        @if (session('info'))
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                {{ session('info') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
     </div>
-
-        @yield('content')
+    @yield('content')
 </div>
 </body>
 </html>
@@ -118,7 +125,12 @@
     window.default_locale = "{{ config('app.locale') }}";
     window.fallback_locale = "{{ config('app.fallback_locale') }}";
     window.messages = @json($messages);
+    window.setTimeout(function() {
+        $(".alert.fade").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 2000);
 </script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('vendor/font-awesome/js/all.js') }}"></script>
-@yield('javascript')
+@yield('scripts')

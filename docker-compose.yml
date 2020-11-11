@@ -142,6 +142,7 @@ services:
     volumes:
       - ./docker/streaming-server/app.js:/usr/src/app/app.js
     ports:
+      # TODO set streaming server port correctly through environment variable into config
       - 8000:8000
       - 1935:1935
     networks:
