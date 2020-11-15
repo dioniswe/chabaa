@@ -199,6 +199,7 @@
                     displayConnectionNotFoundFrame();
                     startReconnectionCounter();
                 }
+                return hasSource;
             }
 
 
@@ -207,7 +208,10 @@
             doStuff();
             if (!hasSource) {
                 var checkExist = setInterval(function () {
-                    doStuff();
+                    let hasSource = doStuff();
+                    if(hasSource) {
+                        clearInterval(checkExist);
+                    }
                 }, 30000); // check every x seconds
             }
         });
@@ -245,6 +249,10 @@
                             console.log("error loading manifest");
                             console.log(event);
                             console.log(data);
+                            console.log(data.type);
+                            if(data.type == "networkError") {
+                                console.log('network error!');
+                            }
                         });
                         hls.loadSource(source);
                         hls.attachMedia(htmlVideoElement);
@@ -261,7 +269,7 @@
                             // Caption support is still flaky. See: https://github.com/sampotts/plyr/issues/994
                         });
                         player.on('error', () => {
-                            console.log('error');
+
                         });
                         player.on('waiting', () => {
                             console.log('waiting');
@@ -301,6 +309,10 @@
                         console.log("error loading manifest");
                         console.log(event);
                         console.log(data);
+                        console.log(data.type);
+                        if(data.type == "networkError") {
+                            console.log('network error!');
+                        }
                     });
                     hls.loadSource(source);
                     hls.attachMedia(htmlVideoElement);
