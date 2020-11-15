@@ -33,11 +33,6 @@
                         <!------------------- seeking connection --------------------->
                         <div class="col-sm-11" id="seeking-connection">
                             <div class="img-overlay-wrap">
-                                <svg class="" width="645" height="365">
-                                    <rect width="640" height="360" x=2 y="2" rx="4" fill-opacity="0"
-                                          stroke-opacity="0.5"
-                                          style="fill:rgb(255,255,255);stroke-width:2;stroke:rgb(180,180,180);"/>
-                                </svg>
                                 <img class="img-overlay-wrap-spinner" src="images/loading-transparent.gif" width="150"
                                      height="150">
                             </div>
@@ -48,31 +43,33 @@
                         </div>
                         <!------------------- connection not found --------------------->
                         <div class="col-sm-11 d-none" id="connection-not-found">
+
                             <div class="img-overlay-wrap">
-                                <svg width="645" height="365">
-                                    <rect width="640" height="360" x="2" y="2" rx="4" fill-opacity="0"
-                                          stroke-opacity="0.5"
-                                          style="fill:rgb(255,255,255);stroke-width:2;stroke:rgb(180,180,180);"/>
-                                </svg>
+
+                                <img id="rectangle" src="images/svg/rectangle-frame.svg" width="100%">
+
                                 <span class="img-overlay-wrap-unsuccessful-right">
-                            <img width="65" src="images/testbild_rund.png">
-                            </span>
+                                    <img width="65" src="images/testbild_rund.png">
+                                </span>
                                 <span class="img-overlay-wrap-unsuccessful-middle"
                                       style="font-size: 48px; color: #5cb85c; text-align: center">
-                            <i class="fas fa-lg  fa-hand-point-right"></i>
-                            </span>
+                                    <i class="fas fa-lg  fa-hand-point-right"></i>
+                                </span>
                                 <span class="img-overlay-wrap-unsuccessful"
                                       style="font-size: 48px; color: #5cb85c; text-align: center">
-                            <i class="fas fa-lg  fa-flushed"></i>
-                            </span>
+                                    <i class="fas fa-lg  fa-flushed"></i>
+                                </span>
                                 <!--img class="img-overlay-wrap-img" src="images/dailyverses/de/1-johannes-3-11.jpg" width="345" height="250"-->
-                            </div>
-                            <div style="text-align:center; font-size: 18px" size="20"> Aktuell gibt es (noch) keine
-                                Predigtübertragung. Es wird in
-                            </div>
-                            <div style="text-align:center; font-size: 24px" size="20" id="countdown">30</div>
-                            <div style="text-align:center; font-size: 18px" size="20">Sekunden eine neue Suche
-                                gestartet
+
+                                <div class="rectangle-text">
+                                    <div style="text-align:center; font-size: 18px" size="20"> Aktuell gibt es (noch) keine
+                                        Predigtübertragung. Es wird in
+                                    </div>
+                                    <div style="text-align:center; font-size: 24px" size="20" id="countdown">30</div>
+                                    <div style="text-align:center; font-size: 18px" size="20">Sekunden erneut nach einer
+                                        Übertragung gesucht
+                                    </div>
+                                </div>
                             </div>
 
 
@@ -100,14 +97,14 @@
                     </div>
                 </div>
                 <div class="flex-center">
-                @if($isFlashVideoSetting)
+                    @if($isFlashVideoSetting)
                         <video
                             id="my-flash-video"
                             width="640"
                             height="264"
                         >
 
-                            <source src="{{$flashVideoSource}}" >
+                            <source src="{{$flashVideoSource}}">
                             <p class="vjs-no-js">
                                 To view this video please enable JavaScript, and consider upgrading to a
                                 web browser that
@@ -116,9 +113,9 @@
                                 >
                             </p>
                         </video>
-                    <!-- data-poster="https://www.chip.de/ii/5/6/7/6/2/8/4/8/43dff6dc96b32060.jpeg" -->
+                        <!-- data-poster="https://www.chip.de/ii/5/6/7/6/2/8/4/8/43dff6dc96b32060.jpeg" -->
 
-                @else
+                    @else
                     <!--TODO: Bitte auf das Video drücken, falls nicht automatisch abgespielt wird -->
                         <!-- data-poster="https://www.chip.de/ii/5/6/7/6/2/8/4/8/43dff6dc96b32060.jpeg" -->
                         <video
@@ -188,21 +185,19 @@
             const source = "{{$videoSource}}";
             const flashSource = "{{$flashVideoSource}}";
             console.log(source);
+
             function doStuff() {
-
                 let hasSource = isStreamAvailable(source);
-
                 if (hasSource) {
                     displayConnectionFoundFrame();
                     setTimeout(function () {
                         console.log('waiting few seconds and initializing player');
-                        initializePlayer(source,flashSource,isFlashVideoSetting);
+                        initializePlayer(source, flashSource, isFlashVideoSetting);
                         displayVideo();
                     }, 5000); // wait 5 seconds
                 } else {
                     displayConnectionNotFoundFrame();
                     startReconnectionCounter();
-
                 }
             }
 
@@ -210,15 +205,15 @@
             let hasSource = isStreamAvailable(source);
 
             doStuff();
-            if(!hasSource) {
+            if (!hasSource) {
                 var checkExist = setInterval(function () {
-                   doStuff();
+                    doStuff();
                 }, 30000); // check every x seconds
             }
         });
 
 
-        function initializePlayer(source,flashSource, isFlashVideoSetting) {
+        function initializePlayer(source, flashSource, isFlashVideoSetting) {
             console.log('waiting few seconds and initializing player');
             console.log('checking for video player');
             if (isFlashVideoSetting) {

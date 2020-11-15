@@ -278,6 +278,7 @@ padding-bottom: 20px;
 }
 .chat-container {
     padding-top: 10px;
+    padding-bottom: 10px;
 }
 .message_section {
     border: 1px solid #dddddd;
@@ -341,13 +342,6 @@ padding-bottom: 20px;
     transition: transform 150ms ease-in-out;
 }
 
-.img-overlay-wrap .img-overlay-wrap-img { /* <= optional, for responsiveness */
-    position: absolute;
-    top: 130px;
-    left: 160px;
-    display: block;
-    height: auto;
-}
 .img-overlay-wrap .img-overlay-wrap-spinner { /* <= optional, for responsiveness */
     position: absolute;
     top: 100px;
@@ -358,7 +352,7 @@ padding-bottom: 20px;
 .img-overlay-wrap .img-overlay-wrap-unsuccessful { /* <= optional, for responsiveness */
     position: absolute;
     top: 160px;
-    left: 150px;
+    left: 15%;
     display: block;
     height: auto;
 }
@@ -366,7 +360,7 @@ padding-bottom: 20px;
 .img-overlay-wrap .img-overlay-wrap-unsuccessful-right { /* <= optional, for responsiveness */
     position: absolute;
     top: 160px;
-    left: 300px;
+    left: 60%;
     display: block;
     height: auto;
 }
@@ -374,13 +368,19 @@ padding-bottom: 20px;
 .img-overlay-wrap .img-overlay-wrap-unsuccessful-middle { /* <= optional, for responsiveness */
     position: absolute;
     top: 160px;
-    left: 225px;
+    left: 35%;
     display: block;
     height: auto;
 }
 
-.img-overlay-wrap svg {
-    position: absolute;
+.img-overlay-wrap img {
+    position: relative;
     top: 0;
     left: 0;
+}
+.img-overlay-wrap .rectangle-text {
+    position: absolute;
+    top: 0;
+    left: 25px;
+    padding-top: 2%;
 }
