@@ -40,6 +40,12 @@
         <div class="title m-b-md">
             {{config('app.name_dative')}}
         </div>
+        <br> <br>
+        <div class="church-address m-b-md">
+            Kaiserstraße 15 <br>
+            77963 Schwanau-Allmannsweier <br>
+            Telefon 07824 584798 <br>
+        </div>
     </div>
 </div>
 </body>

@@ -117,7 +117,7 @@ services:
       - ICECAST_PORT=${ICECAST_PORT}
     ports:
     # TODO set icecast port correctly through environment variable into config
-      - 8008:8008
+      - 8080:8080
     networks:
       - mynet
 

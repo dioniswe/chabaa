@@ -1,4 +1,4 @@
-@extends('layouts.neutral')
+@extends('layouts.neutral-free-of-app-js')
 
 @section('content')
     <div class="flex-center position-ref full-height">

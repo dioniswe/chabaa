@@ -1,4 +1,4 @@
-@extends('layouts.neutral')
+@extends('layouts.neutral-including-app-js')
 
 @section('content')
 

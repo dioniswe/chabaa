@@ -18,16 +18,16 @@ class AddAdminUsers extends Migration
             $table->string('username');
         });
         // add admin user
-        $user = new \App\User();
-        $user->id = \App\User::ADMIN_USER_ID;
+        $user = new \App\Model\User();
+        $user->id = \App\Model\User::ADMIN_USER_ID;
         $user->username = config('chabaa.CHABAA_ADMIN_USER');
         $user->email = 'no@email.yet';
         $user->name = 'Iam Servant';
         $user->password =  \Illuminate\Support\Facades\Hash::make( config('chabaa.CHABAA_ADMIN_PASSWORD'));
         $user->save();
         // add congregation user
-        $user = new \App\User();
-        $user->id = \App\User::CONGREGATION_USER_ID;
+        $user = new \App\Model\User();
+        $user->id = \App\Model\User::CONGREGATION_USER_ID;
         $user->username = config('chabaa.CHABAA_CONGREGATION_USER');
         $user->email = 'neither@email.yet';
         $user->name = 'Iam congregation';

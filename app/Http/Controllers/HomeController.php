@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Enum\ChatChannels;
 use App\Enum\StreamingType;
 use App\Events\MessageReceivedEvent;
-use App\Message;
-use App\User;
+use App\Model\Message;
+use App\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -31,7 +31,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function home()
     {
         return view('home');
     }
@@ -90,7 +90,10 @@ class HomeController extends Controller
      */
     public function radio()
     {
-        return view('radio');
+        $streamingServerPort = Config::get('app.streaming_server_port');
+        $audioSource = url(request()->getSchemeAndHttpHost() . ':8080/' . config('chabaa.ICECAST_MOUNT_NAME'));
+        return view('radio')
+            ->with('audioSource', $audioSource);
     }
 
     /**
@@ -110,7 +113,8 @@ class HomeController extends Controller
      */
     public function announcements()
     {
-        return view('work-in-progress');
+
+        return view('announcements-management');
     }
 
     /**

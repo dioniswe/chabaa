@@ -53,11 +53,38 @@ Route::any('/user-settings', 'HomeController@userSettings')
 Route::get('/get-messages', 'HomeController@getMessages')
     ->name('get-messages');
 
+
+Route::group(
+    [
+        'prefix' => 'management'
+    ], function () {
+    Route::any('/home', 'ManagementController@home')
+        ->name('management-home');
+    Route::any('/church', 'ManagementController@church')
+        ->name('management-church');
+    Route::any('/general', 'ManagementController@general')
+        ->name('management-general');
+    Route::any('/user', 'ManagementController@user')
+        ->name('management-user');
+    Route::any('/video-streaming', 'ManagementController@videoStreaming')
+        ->name('management-video-streaming');
+    Route::any('/radio', 'ManagementController@radio')
+        ->name('management-radio');
+    Route::any('/library', 'ManagementController@library')
+        ->name('management-library');
+    Route::any('/announcements', 'ManagementController@announcements')
+        ->name('management-announcements');
+    Route::any('/chat', 'ManagementController@chat')
+        ->name('management-chat');
+    Route::any('/recordings}', 'ManagementController@recordings')
+        ->name('management-recordings');
+});
+
 Route::group(
     [
         'prefix' => \Illuminate\Support\Facades\Config::get('app.locale_prefix')
     ], function () {
-    Route::get('/{home}', 'HomeController@index')
+    Route::get('/{home}', 'HomeController@home')
         ->name('home');
     Route::get('/{church_service}', 'HomeController@churchService')
         ->name('church_service');

@@ -72,6 +72,10 @@ padding-bottom: 20px;
     font-size: 6vw;
 }
 
+.church-address {
+    font-size: 2vw;
+}
+
 .info {
     padding: 30px;
     text-align: center;

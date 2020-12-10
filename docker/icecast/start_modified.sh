@@ -22,4 +22,5 @@ set_val $ICECAST_PORT            port
 
 set -e
 
+sed  -i '1 a <http-headers> <header name="Access-Control-Allow-Origin" value="*" />  </http-headers>' /etc/icecast2/icecast.xml
 sudo -Eu icecast2 icecast2 -n -c /etc/icecast2/icecast.xml
