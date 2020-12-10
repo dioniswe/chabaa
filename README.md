@@ -9,7 +9,7 @@
 
 ## About Chabaa
 
-Chabaa (acr. for: chabaa aids bible accorded assemblies, כבא in hebrew means to retreat or harden).
+Chabaa (acr. for: chabaa aids bible accorded assemblies, חבא in hebrew means to retreat or harden).
  It is an app supporting churches to use digital capabilities for their gatherings and cooperations and is a response
  to corona-enforced shutdowns of german churches.
  It comprises 
