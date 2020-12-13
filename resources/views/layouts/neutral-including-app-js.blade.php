@@ -139,6 +139,6 @@
         });
     }, 2000);
 </script>
-<script src="{{ asset('js/app.js?v=1') }}"></script>
+<script src="{{ asset('js/app.js?v=2') }}"></script>
 <script src="{{ asset('vendor/font-awesome/js/all.js') }}"></script>
 @yield('scripts')
