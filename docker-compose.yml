@@ -148,11 +148,12 @@ services:
     networks:
       - mynet
 
-  reverse-proxy:
-    container_name: reverse-proxy
-    image: traefik:latest
-    networks:
-      - mynet
+# reverse proxy not in use yet
+  #reverse-proxy:
+   # container_name: reverse-proxy
+    #image: traefik:latest
+    #networks:
+     # - mynet
 
 networks:
   mynet:
