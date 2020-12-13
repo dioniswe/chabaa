@@ -5,4 +5,6 @@ return [
     "street" => "Straße",
     "zip" => "Postleitzahl",
     "city" => "Stadt",
+    "phone" => "Telefon",
+    "email" => "Kontakt-Email-Adresse",
 ];

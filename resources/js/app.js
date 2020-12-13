@@ -30,10 +30,10 @@ import Lang from 'lang.js';
 
 const default_locale = window.default_locale;
 const fallback_locale = window.fallback_locale;
-const messages =  window.messages;
+const tidings =  window.tidings;
 
 Vue.prototype.trans = new Lang({
-    messages,
+    messages: tidings,
     locale: default_locale,
     fallback: fallback_locale
 });

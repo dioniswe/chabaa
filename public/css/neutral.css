@@ -73,7 +73,12 @@ padding-bottom: 20px;
 }
 
 .church-address {
-    font-size: 2vw;
+    font-size: 4vw;
+}
+
+.email-image {
+    width:40vh;
+    max-width:40%;
 }
 
 .info {

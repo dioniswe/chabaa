@@ -42,11 +42,14 @@
         </div>
         <br> <br>
         <div class="church-address m-b-md">
-            Kaiserstraße 15 <br>
-            77963 Schwanau-Allmannsweier <br>
-            Telefon 07824 584798 <br>
+            {{\Illuminate\Support\Arr::get($config, 'management.church.street')}} <br>
+           {{\Illuminate\Support\Arr::get($config, 'management.church.zip')}} {{\Illuminate\Support\Arr::get($config, 'management.church.city')}}<br>
+            Telefon {{\Illuminate\Support\Arr::get($config, 'management.church.phone')}} <br>
+
+            <img class="email-image" src="get-contact-email" class="responsive">
         </div>
     </div>
 </div>
 </body>
 </html>
+

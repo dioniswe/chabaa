@@ -132,7 +132,7 @@
 <script>
     window.default_locale = "{{ config('app.locale') }}";
     window.fallback_locale = "{{ config('app.fallback_locale') }}";
-    window.messages = @json($messages ?? '');
+    window.tidings = @json($tidings);
     window.setTimeout(function() {
         $(".alert.fade").fadeTo(500, 0).slideUp(500, function(){
             $(this).remove();

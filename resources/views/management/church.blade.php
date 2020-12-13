@@ -50,12 +50,39 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <h4><label class="form-check-label" for="zip">{{__('management/church.city')}}
+                                    <h4><label class="form-check-label" for="city">{{__('management/church.city')}}
                                             :</label></h4>
                                 </div>
                                 <div class="col-sm-8">
                                     <input type="text" name="city" placeholder="{{__("management/church.city")}}"
                                            value="{{\Illuminate\Support\Arr::get($config, 'management.church.city')}}"
+                                           class="align-center form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h4><label class="form-check-label" for="phone">{{__('management/church.phone')}}
+                                            :</label></h4>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" name="phone" placeholder="{{__("management/church.phone")}}"
+                                           value="{{\Illuminate\Support\Arr::get($config, 'management.church.phone')}}"
+                                           class="align-center form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h4><label class="form-check-label" for="email">{{__('management/church.email')}}
+                                            :</label></h4>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" name="email" placeholder="{{__("management/church.email")}}"
+                                           value="{{\Illuminate\Support\Arr::get($config, 'management.church.email')}}"
                                            class="align-center form-control input-sm">
                                 </div>
                             </div>

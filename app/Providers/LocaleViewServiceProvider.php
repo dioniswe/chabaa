@@ -17,10 +17,19 @@ class LocaleViewServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(
-            'layouts.neutral', function ($view) {
+            'layouts.neutral-including-app-js', function ($view) {
             return $view->with(
                 [
-                    'messages' => ExportLocalization::export()->toFlat(),
+                    'tidings' => ExportLocalization::export()->toFlat(),
+                ]
+            );
+        }
+        );
+        View::composer(
+            'layouts.neutral-free-of-app-js', function ($view) {
+            return $view->with(
+                [
+                    'tidings' => ExportLocalization::export()->toFlat(),
                 ]
             );
         }

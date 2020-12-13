@@ -61,7 +61,7 @@
                                     keine
                                     Predigtübertragung. Es wird in
                                 </div>
-                                <div style="text-align:center; font-size: 24px" size="20" id="countdown">30</div>
+                                <div style="text-align:center; font-size: 24px" size="20" id="countdown">10</div>
                                 <div style="text-align:center; font-size: 18px" size="20">Sekunden erneut nach einer
                                     Übertragung gesucht
                                 </div>
@@ -145,13 +145,17 @@
     <script type="text/javascript" src="/js/jplayer/dist/jplayer/jquery.jplayer.js"></script>
     <script type="text/javascript" src="/js/jstrapplayer.js"></script>
     <script>
-        function isStreamAvailable(source) {
-            var http = new XMLHttpRequest();
-            http.open('HEAD', source, false);
-            http.send();
-            let hasSource = http.status !== 404;
-            console.log('is stream available: ' + hasSource);
-            return hasSource;
+        function initiateStreamingDownload(source) {
+            displaySeekingFrame();
+            let xhr = new XMLHttpRequest()
+            xhr.onreadystatechange = function () {
+                console.log(this.readyState);
+                if (this.readyState === this.LOADING) {
+                }
+            }
+            xhr.open('GET', source, true)
+            xhr.send();
+            return xhr;
         }
 
         function displaySeekingFrame() {
@@ -180,56 +184,69 @@
         }
 
         function startReconnectionCounter() {
+
+            document.getElementById('countdown').innerHTML = '10';
             var reconnectionCounter = setInterval(function () {
                 let counter = Number(document.getElementById('countdown').innerHTML);
                 if (counter === 0) {
                     clearInterval(reconnectionCounter);
-                    document.getElementById('countdown').innerHTML = '30';
+                    document.getElementById('countdown').innerHTML = '10';
                 } else {
                     document.getElementById('countdown').innerHTML = counter - 1;
                 }
             }, 1000);
+            return reconnectionCounter;
         }
 
 
         document.addEventListener('DOMContentLoaded', () => {
+
             const source = "{{$audioSource}}";
             console.log(source);
+            let hasSource = false;
+
+            let currentReconnectionCounter;
 
             function doStuff() {
-                let hasSource = isStreamAvailable(source);
-                if (hasSource) {
-                    displayConnectionFoundFrame();
-                    setTimeout(function () {
-                        console.log('waiting few seconds and initializing player');
+                let xhr = initiateStreamingDownload(source);
+                setTimeout(function () {
+                    if (xhr.status !== 404) {
+                        // probably success
+                        console.log('probably success');
+                        xhr.abort();
+                        displayConnectionFoundFrame()
                         initializePlayer(source);
                         displayRadio();
-                    }, 1000); // wait 5 seconds
-                } else {
-                    displayConnectionNotFoundFrame();
-                    startReconnectionCounter();
-                }
-                return hasSource;
+                        hasSource = true;
+                    } else {
+                        // probably failure
+                        console.log('probably failure');
+                        xhr.abort();
+                        hasSource = false;
+                        displayConnectionNotFoundFrame();
+                        clearInterval(currentReconnectionCounter);
+                        currentReconnectionCounter = startReconnectionCounter();
+                    }
+                    ;
+                }, 5000); // wait 5 seconds
             }
-
-
-            let hasSource = isStreamAvailable(source);
 
             doStuff();
             if (!hasSource) {
                 var checkExist = setInterval(function () {
-                    let hasSource = doStuff();
-                    if (hasSource) {
-                        clearInterval(checkExist);
-                    }
-                }, 30000); // check every x seconds
+                    doStuff();
+                    setTimeout(function () {
+                        if (hasSource) {
+                            clearInterval(checkExist);
+                        }
+                    }, 6000); // wait x seconds  before executing
+
+                }, 16000); // repeat every x seconds
             }
         });
 
 
         function initializePlayer(source) {
-            console.log('waiting few seconds and initializing player');
-
             console.log('searching for video element');
             let htmlAudioElement = $('#jquery_jplayer_1');
             console.log(htmlAudioElement);

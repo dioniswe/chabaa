@@ -47,7 +47,6 @@ class ManagementController extends Controller
             return view('management.church');
         }
         $request->all();
-        dump($request->all());
         $config = Config::where('config','management.church.name')->first();
         if(empty($config)) {
             $config = new Config();
@@ -79,6 +78,25 @@ class ManagementController extends Controller
 
         $config->config = 'management.church.city';
         $config->value = $request->get('city');
+        $config->save();
+
+        $config = Config::where('config','management.church.email')->first();
+        if(empty($config)) {
+            $config = new Config();
+        }
+
+        $config->config = 'management.church.email';
+        $config->value = $request->get('email');
+        $config->save();
+
+
+        $config = Config::where('config','management.church.phone')->first();
+        if(empty($config)) {
+            $config = new Config();
+        }
+
+        $config->config = 'management.church.phone';
+        $config->value = $request->get('phone');
         $config->save();
 
         return Redirect::to('management/church');

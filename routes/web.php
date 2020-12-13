@@ -53,6 +53,9 @@ Route::any('/user-settings', 'HomeController@userSettings')
 Route::get('/get-messages', 'HomeController@getMessages')
     ->name('get-messages');
 
+Route::get('/get-contact-email', 'HomeController@getContactEmail')
+    ->name('get-contact-email');
+
 
 Route::group(
     [
