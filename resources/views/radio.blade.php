@@ -206,7 +206,6 @@
             let hasSource = false;
 
             let currentReconnectionCounter;
-
             function doStuff() {
                 let xhr = initiateStreamingDownload(source);
                 setTimeout(function () {
@@ -232,17 +231,19 @@
             }
 
             doStuff();
-            if (!hasSource) {
-                var checkExist = setInterval(function () {
-                    doStuff();
-                    setTimeout(function () {
-                        if (hasSource) {
-                            clearInterval(checkExist);
-                        }
-                    }, 6000); // wait x seconds  before executing
+            setTimeout(function () {
+                if (!hasSource) {
+                    var checkExist = setInterval(function () {
+                        doStuff();
+                        setTimeout(function () {
+                            if (hasSource) {
+                                clearInterval(checkExist);
+                            }
+                        }, 6000); // wait x seconds  before executing
 
-                }, 16000); // repeat every x seconds
-            }
+                    }, 16000); // repeat every x seconds
+                }
+            }, 6000); // wait x seconds before executing
         });
 
 
