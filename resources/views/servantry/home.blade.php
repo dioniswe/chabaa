@@ -1,4 +1,4 @@
-@extends('management.layout')
+@extends('servantry.layout')
 
 @section('content')
     <div class="title m-b-md">

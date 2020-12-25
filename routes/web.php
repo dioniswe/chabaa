@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/get-contact-email', 'WelcomeController@getContactEmail')
+    ->name('get-contact-email');
 
 \Illuminate\Support\Facades\Auth::routes();
 
@@ -53,34 +55,36 @@ Route::any('/user-settings', 'HomeController@userSettings')
 Route::get('/get-messages', 'HomeController@getMessages')
     ->name('get-messages');
 
-Route::get('/get-contact-email', 'HomeController@getContactEmail')
-    ->name('get-contact-email');
+Route::get('/get-sundry-messages', 'HomeController@getSundryMessages')
+    ->name('get-sundry-messages');
 
+Route::post('/sundry-messages', 'HomeController@sundryMessageReceived')
+    ->name('sundry-messages');
 
 Route::group(
     [
-        'prefix' => 'management'
+        'prefix' => 'servantry'
     ], function () {
-    Route::any('/home', 'ManagementController@home')
-        ->name('management-home');
-    Route::any('/church', 'ManagementController@church')
-        ->name('management-church');
-    Route::any('/general', 'ManagementController@general')
-        ->name('management-general');
-    Route::any('/user', 'ManagementController@user')
-        ->name('management-user');
-    Route::any('/video-streaming', 'ManagementController@videoStreaming')
-        ->name('management-video-streaming');
-    Route::any('/radio', 'ManagementController@radio')
-        ->name('management-radio');
-    Route::any('/library', 'ManagementController@library')
-        ->name('management-library');
-    Route::any('/announcements', 'ManagementController@announcements')
-        ->name('management-announcements');
-    Route::any('/chat', 'ManagementController@chat')
-        ->name('management-chat');
-    Route::any('/recordings}', 'ManagementController@recordings')
-        ->name('management-recordings');
+    Route::any('/home', 'ServantryController@home')
+        ->name('servantry-home');
+    Route::any('/church', 'ServantryController@church')
+        ->name('servantry-church');
+    Route::any('/general', 'ServantryController@general')
+        ->name('servantry-general');
+    Route::any('/user', 'ServantryController@user')
+        ->name('servantry-user');
+    Route::any('/video-streaming', 'ServantryController@videoStreaming')
+        ->name('servantry-video-streaming');
+    Route::any('/radio', 'ServantryController@radio')
+        ->name('servantry-radio');
+    Route::any('/library', 'ServantryController@library')
+        ->name('servantry-library');
+    Route::any('/announcements', 'ServantryController@announcements')
+        ->name('servantry-announcements');
+    Route::any('/chat', 'ServantryController@chat')
+        ->name('servantry-chat');
+    Route::any('/recordings}', 'ServantryController@recordings')
+        ->name('servantry-recordings');
 });
 
 Route::group(

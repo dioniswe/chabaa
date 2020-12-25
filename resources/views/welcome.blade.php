@@ -42,9 +42,9 @@
         </div>
         <br> <br>
         <div class="church-address m-b-md">
-            {{\Illuminate\Support\Arr::get($config, 'management.church.street')}} <br>
-           {{\Illuminate\Support\Arr::get($config, 'management.church.zip')}} {{\Illuminate\Support\Arr::get($config, 'management.church.city')}}<br>
-            {{\Illuminate\Support\Arr::get($config, 'management.church.phone')}} <br>
+            {{\Illuminate\Support\Arr::get($config, 'servantry.church.street')}} <br>
+            {{\Illuminate\Support\Arr::get($config, 'servantry.church.zip')}} {{\Illuminate\Support\Arr::get($config, 'servantry.church.city')}}<br>
+            {{\Illuminate\Support\Arr::get($config, 'servantry.church.phone')}} <br>
 
             <img class="email-image" src="get-contact-email">
         </div>

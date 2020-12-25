@@ -282,7 +282,6 @@
                 }
             }
             displayVideo();
-
         }
 
         function initializeFlashPlayer(flashSource) {
