@@ -11,30 +11,30 @@
     },
     "devDependencies": {
         "axios": "^0.19.2",
-        "bootstrap": "^4.5.0",
-        "cross-env": "^7.0",
+        "bootstrap": "^4.5.3",
+        "cross-env": "^7.0.3",
         "jquery": "^3.5.1",
         "jquery-ui": "^1.12.1",
-        "laravel-mix": "^5.0.1",
-        "lodash": "^4.17.13",
+        "laravel-mix": "^5.0.9",
+        "lodash": "^4.17.20",
         "popper.js": "^1.12",
         "resolve-url-loader": "^2.3.1",
-        "sass": "^1.26.8",
+        "sass": "^1.30.0",
         "sass-loader": "^8.0.0",
-        "vue": "^2.6.11",
-        "vue-template-compiler": "^2.6.10"
+        "vue": "^2.6.12",
+        "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.13.1",
-        "@videojs/http-streaming": "^1.13.3",
+        "@fortawesome/fontawesome-free": "^5.15.1",
+        "@videojs/http-streaming": "^1.13.4",
         "google-font-installer": "^1.2.0",
         "hls.js": "^0.13.2",
         "lang.js": "^1.1.14",
-        "laravel-echo": "^1.8.0",
+        "laravel-echo": "^1.10.0",
         "laravel-file-manager": "github:dioniswe/vue-laravel-file-manager#master",
-        "socket.io-client": "^2.3.0",
-        "video.js": "^7.8.2",
+        "socket.io-client": "^2.3.1",
+        "video.js": "^7.10.2",
         "videojs-hlsjs-progress-control": "^1.0.2",
-        "vuex": "^3.4.0"
+        "vuex": "^3.6.0"
     }
 }
