@@ -50,8 +50,6 @@ services:
       - ./storage/logs/mysql:/var/log/mysql/
       - ./docker/mariadb/etc/my.cnf:/etc/mysql/my.cnf
     restart: always
-    ports:
-      - 3306:3306
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_USER: ${DB_USERNAME}
