@@ -52,7 +52,7 @@ Stop any other applications running on these ports or configure chabaa for using
 On common vanilla linux application, you'll probably just want to stop apache: sudo service apache2 stop. 
 
 ## STEP 1: prerequisite: install and activate docker, install docker-compose, nodejs, npm and git 
-    sudo apt-get install docker-compose docker.io npm nodejs git
+    sudo apt-get install docker-compose docker.io npm nodejs git composer
     sudo adduser `whoami` docker
     sudo systemctl enable docker
 
