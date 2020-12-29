@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enum\ChatChannels;
 use App\Enum\StreamingType;
 use App\Events\MessageReceivedEvent;
+use App\Model\AppointedDates;
 use App\Model\Message;
 use App\Model\User;
 use Illuminate\Http\Request;
@@ -115,7 +116,7 @@ class HomeController extends Controller
     public function announcements()
     {
 
-        return view('announcements-management');
+        return view('announcements-management')->with('appointedDates', AppointedDates::all());
     }
 
     /**

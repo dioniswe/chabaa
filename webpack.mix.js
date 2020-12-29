@@ -16,4 +16,5 @@ mix
     .sass('resources/sass/app.scss', 'public/css')
     .copy('node_modules/@fortawesome/fontawesome-free', 'public/vendor/font-awesome/')
     .copy('node_modules/video.js/dist', 'public/vendor/video.js/')
+    .copy('node_modules/photoswipe/dist', 'public/vendor/photoswipe/')
     .copy('node_modules/bootstrap/dist', 'public/vendor/bootstrap/');

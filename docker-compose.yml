@@ -47,6 +47,7 @@ services:
     container_name: database
     image: mariadb:10.5
     volumes:
+      - ./storage/data/mysql:/var/lib/mysql
       - ./storage/logs/mysql:/var/log/mysql/
       - ./docker/mariadb/etc/my.cnf:/etc/mysql/my.cnf
     restart: always
@@ -88,8 +89,8 @@ services:
   sftp:
     container_name: sftp
     image: atmoz/sftp
-    #volumes:
-      #- ./docker/sftp/upload:/home/foo/upload
+    volumes:
+      - ./storage/data/sftp:/home/foo/upload
     # TODO consider bind mount instead of hosting in docker container
     environment:
       - SFTP_USERS=${SFTP_USER}:${SFTP_PASSWORD}:::upload

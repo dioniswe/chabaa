@@ -12,7 +12,7 @@ USER root
 RUN apt-get update
 RUN apt-get -y install  libonig-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng-dev zlib1g-dev libxml2-dev \
                         libzip-dev libonig-dev graphviz openssl gnupg-utils libmcrypt4 libmcrypt-dev libssl-dev net-tools \
-                        procps vim
+                        procps vim exiftool
 
 RUN docker-php-ext-install pdo pdo_mysql mysqli mbstring xml json phar zip gd dom session
 RUN docker-php-ext-enable pdo pdo_mysql mysqli mbstring xml json phar zip gd dom session
@@ -20,6 +20,8 @@ RUN docker-php-ext-enable pdo pdo_mysql mysqli mbstring xml json phar zip gd dom
 # step 1.2 install xdebug pecl extension
 RUN pecl install redis-5.1.1 \
     && pecl install xdebug-2.8.1 \
+    && docker-php-ext-install exif \
+    && docker-php-ext-configure exif
     && docker-php-ext-enable redis xdebug
 
 RUN \
