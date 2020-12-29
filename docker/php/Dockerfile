@@ -22,16 +22,17 @@ RUN pecl install redis-5.1.1 \
     && pecl install xdebug-2.8.1 \
     && docker-php-ext-install exif \
     && docker-php-ext-configure exif \
-    && docker-php-ext-enable redis xdebug
+    && docker-php-ext-enable redis
 
 RUN \
-if [ -z ${XDEBUG_ENABLE} ]; then \
+if [ -n ${XDEBUG_ENABLE} ]; then \
     echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_port=9000" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_handler=dbgp" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_connect_back=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.idekey=mertblog.net" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && docker-php-ext-enable xdebug
 ;fi
 
 # step 1.3 install PHP Composer
@@ -61,8 +62,6 @@ RUN if [ ${USER_ID:-0} -ne 0 ] && [ ${GROUP_ID:-0} -ne 0 ]; then \
 USER chabaa
 # Change current user to chabaa
 WORKDIR /var/www/chabaa
-# Expose port 9000 and start php-fpm server
-EXPOSE 9000
 
 COPY ./docker/php/startup.sh /usr/local/bin/startup.sh
 USER root
