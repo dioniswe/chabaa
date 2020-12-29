@@ -32,7 +32,7 @@ if [ -n ${XDEBUG_ENABLE} ]; then \
     && echo "xdebug.remote_handler=dbgp" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_connect_back=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.idekey=mertblog.net" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && docker-php-ext-enable xdebug
+    && docker-php-ext-enable xdebug \
 ;fi
 
 # step 1.3 install PHP Composer
