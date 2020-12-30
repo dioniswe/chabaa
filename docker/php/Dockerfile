@@ -1,5 +1,5 @@
 # php:7.4-cli contains a debian buster image
-FROM php:7.4-fpm
+FROM php:7.3-fpm
 
 
 ARG USER_ID
