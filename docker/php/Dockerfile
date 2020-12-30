@@ -19,14 +19,15 @@ RUN docker-php-ext-enable pdo pdo_mysql mysqli mbstring xml json phar zip gd dom
 
 # step 1.2 install xdebug pecl extension
 RUN pecl install redis-5.1.1 \
-    && pecl install xdebug-2.8.1 \
     && docker-php-ext-install exif \
     && docker-php-ext-configure exif \
     && docker-php-ext-enable redis
 
 RUN \
 if [ -n ${XDEBUG_ENABLE} ]; then \
-    echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+
+    pecl install xdebug-2.8.1 \
+    && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_port=9000" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_handler=dbgp" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
