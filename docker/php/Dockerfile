@@ -24,7 +24,7 @@ RUN pecl install redis-5.1.1 \
     && docker-php-ext-enable redis
 
 RUN \
-if [ -n ${XDEBUG_ENABLE} ]; then \
+if [ ! -z ${XDEBUG_ENABLE} ]; then \
 
     pecl install xdebug-2.8.1 \
     && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
