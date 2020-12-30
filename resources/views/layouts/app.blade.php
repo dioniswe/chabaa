@@ -14,7 +14,7 @@
 
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css?v=1') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/video.js/video-js.css') }}" rel="stylesheet">
 </head>

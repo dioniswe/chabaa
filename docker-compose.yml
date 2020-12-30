@@ -27,7 +27,7 @@ services:
 
   web:
     container_name: web
-    image: nginx:1.17
+    image: owasp/modsecurity:latest
     depends_on:
       - chabaa
     volumes:
