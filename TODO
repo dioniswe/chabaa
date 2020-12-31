@@ -1,3 +1,4 @@
+volumes for recordings and database (fix rights)
 add manageable chat channels
 contact (no registration)
 https capability addition
@@ -8,5 +9,6 @@ embedding of video and chat into any webpage (youtube-like, possibly with iframe
 stabilize flash video
 viewer's and listeners statistics (integrate into administration area?)
 manage modules inside administration area
+nginx hardening with mod_security
 smartphone app (in-app browser?)
 

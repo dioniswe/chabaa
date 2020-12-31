@@ -12,7 +12,7 @@
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/font-awesome/css/all.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/video.js/video-js.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/neutral.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/neutral.css?v=3') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css">
 
     <!-- Scripts -->
@@ -212,6 +212,6 @@
         });
     }, 2000);
 </script>
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js?v=3') }}"></script>
 <script src="{{ asset('vendor/font-awesome/js/all.js') }}"></script>
 @yield('scripts')
