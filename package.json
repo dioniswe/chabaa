@@ -26,7 +26,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.1",
-        "@videojs/http-streaming": "^1.13.4",
+        "@videojs/http-streaming": "^2.15.0",
         "google-font-installer": "^1.2.0",
         "hls.js": "^0.13.2",
         "lang.js": "^1.1.14",
@@ -34,7 +34,7 @@
         "laravel-file-manager": "github:dioniswe/vue-laravel-file-manager#master",
         "photoswipe": "^4.1.3",
         "socket.io-client": "^2.3.1",
-        "video.js": "^7.10.2",
+        "video.js": "^7.20.3",
         "videojs-hlsjs-progress-control": "^1.0.2",
         "vuex": "^3.6.0"
     }
