@@ -17,6 +17,7 @@
         "happyworm/jplayer": "2.*",
         "jeremykenedy/laravel-users": "^4.2",
         "kg-bot/laravel-localization-to-vue": "^1.6",
+        "kris/laravel-form-builder": "^1.51",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
@@ -35,7 +36,10 @@
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true,
-        "component-dir": "public/js"
+        "component-dir": "public/js",
+        "allow-plugins": {
+            "robloach/component-installer": true
+        }
     },
     "extra": {
         "laravel": {
