@@ -43,21 +43,31 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function churchService()
+    public function churchService(Request $request)
     {
         $isFlashVideoSetting = \session('streamingVideoType') == StreamingType::STREAMING_TYPE_FLASH;
+        //dd($isFlashVideoSetting);
         $streamingServerPort = Config::get('app.streaming_server_port');
+        $streamingServerPort = 8080;
         $streamingServerHtml5StreamingKey = Config::get('app.streaming_server_html5_streaming_key');
 
-            $videoSource = url(request()->getSchemeAndHttpHost()).':'.$streamingServerPort.'/live/'.$streamingServerHtml5StreamingKey.'/index.m3u8';
+        //$videoSource =  $request->getScheme() . '://' . 'streaming-outbound.' . $request->getHttpHost().'/live/'.$streamingServerHtml5StreamingKey.'/index.m3u8';
+        $flashVideoSource = 'rtmp://' .request()->getHost().'/hls/'.$streamingServerHtml5StreamingKey;
 
-            $flashVideoSource = url(request()->getSchemeAndHttpHost()).':'.$streamingServerPort.'/live/'.$streamingServerHtml5StreamingKey.'.flv';
+            $flashVideoSource = url(request()->getSchemeAndHttpHost()).':'.$streamingServerPort.'/hls/'.$streamingServerHtml5StreamingKey.'.m3u8';
 
-        return view('church-service')
-            ->with('isFlashVideoSetting', $isFlashVideoSetting)
-            ->with('isFlashVideoSettingLiteral', $isFlashVideoSetting ? 'true' : 'false')
-            ->with('videoSource', $videoSource)
-            ->with('flashVideoSource', $flashVideoSource);
+        //$flashVideoSource = $request->getScheme() . '://' . 'streaming-outbound.' . $request->getHttpHost().'/live/'.$streamingServerHtml5StreamingKey.'.flv';
+
+        //dd($videoSource);
+        return response()
+            ->view('church-service', [
+            'isFlashVideoSetting'=> $isFlashVideoSetting
+            ,'isFlashVideoSettingLiteral'=> $isFlashVideoSetting ? 'true' : 'false'
+            //,'videoSource'=> $videoSource
+            ,'videoSource'=> $flashVideoSource,
+            'flashVideoSource'=> $flashVideoSource
+        ],200)
+            ->header('Access-Control-Allow-Origin', '*');
     }
 
     /**

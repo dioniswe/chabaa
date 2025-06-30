@@ -1,0 +1,13 @@
+
+server {
+    listen 8080;
+
+    location / {
+        add_header Access-Control-Allow-Origin *;
+        root /var/www/html/stream;
+    }
+}
+
+types {
+    application/dash+xml mpd;
+}
