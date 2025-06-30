@@ -191,6 +191,9 @@ return [
         App\Providers\LocaleViewServiceProvider::class,
         // TODO check necessity of below debugbar statement
         Barryvdh\Debugbar\ServiceProvider::class,
+        // ...
+        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class
+
 
     ],
 
@@ -245,7 +248,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         // TODO check necessity of below debugbar statement
         'DebugBar'  => 'Barryvdh\Debugbar\Facade',
-        "ExportLocalization" => "KgBot\\LaravelLocalization\\Facades\\ExportLocalizations"
+        "ExportLocalization" => "KgBot\\LaravelLocalization\\Facades\\ExportLocalizations",
+        'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
     ],
 
 ];
