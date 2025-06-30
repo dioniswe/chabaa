@@ -26,7 +26,7 @@ class LocaleViewServiceProvider extends ServiceProvider
         }
         );
         View::composer(
-            'layouts.neutral-free-of-app-js', function ($view) {
+            'layouts.neutral', function ($view) {
             return $view->with(
                 [
                     'tidings' => ExportLocalization::export()->toFlat(),

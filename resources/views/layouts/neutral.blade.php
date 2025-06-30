@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -9,14 +10,12 @@
 
     <title>{{ config('app.name', 'Chabaa') }}</title>
     <!-- Fonts -->
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/font-awesome/css/all.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/video.js/video-js.css') }}" rel="stylesheet">
     <link href="{{ asset('css/neutral.css?v=3') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css">
-
     <!-- Scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!--script src="https://cdn.rawgit.com/video-dev/hls.js/18bb552/dist/hls.min.js"></script-->
     <!--script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script-->
@@ -24,6 +23,7 @@
     <script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/videojs-flash@2/dist/videojs-flash.min.js"></script>
     <script src="https://cdn.plyr.io/3.6.2/plyr.js"></script>
+
 
     @yield('head')
 </head>
@@ -121,10 +121,11 @@
 </div>
 </body>
 </html>
+@yield('app-js-scripts')
 <script>
     window.default_locale = "{{ config('app.locale') }}";
     window.fallback_locale = "{{ config('app.fallback_locale') }}";
-    window.messages = @json($messages ?? '');
+    window.tidings = @json($tidings);
     window.setTimeout(function() {
         $(".alert.fade").fadeTo(500, 0).slideUp(500, function(){
             $(this).remove();
