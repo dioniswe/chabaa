@@ -1,5 +1,6 @@
 /node_modules
 /public/vendor
+/public/fonts/vendor/@fortawesome
 !/public/vendor/fonts/im_here_for_git_folder_creation
 /public/hot
 /public/storage

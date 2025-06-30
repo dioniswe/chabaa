@@ -28,7 +28,9 @@ class AppServiceProvider extends ServiceProvider
         if(\Schema::hasTable('config')) {
             $arr = \App\Model\Config::all(['config', 'value'])->toArray();
             $arr = Arr::pluck($arr, 'value', 'config');
-            view()->share('config', $arr);
+        } else {
+          $arr = [];
         }
+        view()->share('config', $arr);
     }
 }

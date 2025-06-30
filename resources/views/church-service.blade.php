@@ -95,25 +95,6 @@
                     </div>
                 </div>
                 <div class="flex-center">
-                    @if($isFlashVideoSetting)
-                        <video
-                            id="my-flash-video"
-                            width="640"
-                            height="264"
-                        >
-
-                            <source src="{{$flashVideoSource}}">
-                            <p class="vjs-no-js">
-                                To view this video please enable JavaScript, and consider upgrading to a
-                                web browser that
-                                <a href="https://videojs.com/html5-video-support/" target="_blank"
-                                >supports HTML5 video</a
-                                >
-                            </p>
-                        </video>
-                        <!-- data-poster="https://www.chip.de/ii/5/6/7/6/2/8/4/8/43dff6dc96b32060.jpeg" -->
-
-                    @else
                     <!--TODO: Bitte auf das Video drücken, falls nicht automatisch abgespielt wird -->
                         <!-- data-poster="https://www.chip.de/ii/5/6/7/6/2/8/4/8/43dff6dc96b32060.jpeg" -->
                         <video
@@ -121,7 +102,6 @@
                             source="{{$videoSource}}"
                         >
                         </video>
-                    @endif
                 </div>
             </div>
         </div>
@@ -137,6 +117,7 @@
             http.send();
             let hasSource = http.status !== 404;
             console.log('is stream available: ' + hasSource);
+            console.log(hasSource);
             return hasSource;
         }
 
@@ -177,10 +158,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const isFlashVideoSetting = {{$isFlashVideoSettingLiteral}};
-            console.log("isFlashVideoSetting:" + isFlashVideoSetting);
             const source = "{{$videoSource}}";
-            const flashSource = "{{$flashVideoSource}}";
             console.log(source);
 
             function doStuff() {
@@ -189,7 +167,7 @@
                     displayConnectionFoundFrame();
                     setTimeout(function () {
                         console.log('waiting few seconds and initializing player');
-                        initializePlayer(source, flashSource, isFlashVideoSetting);
+                        initializePlayer(source);
                         displayVideo();
                     }, 5000); // wait 5 seconds
                 } else {
@@ -198,7 +176,6 @@
                 }
                 return hasSource;
             }
-
 
             let hasSource = isStreamAvailable(source);
 
@@ -213,78 +190,11 @@
             }
         });
 
-        function initializePlayer(source, flashSource, isFlashVideoSetting) {
+        function initializePlayer(source) {
             console.log('waiting few seconds and initializing player');
             console.log('checking for video player');
-            if (isFlashVideoSetting) {
-                console.log('flash routine triggered');
-                if (flvjs.isSupported()) {
-                    console.log('flv.js is supported!!');
-                    var player = videojs('my-flash-video', {techOrder: ['flash']});
-                } else {
-                    console.log('flv.js is not supported!!');
-                }
-            } else {
-                console.log('html5 player routine triggered');
-                console.log('searching for video element');
-                let htmlVideoElement = document.querySelector('video');
-                if (htmlVideoElement !== null) {
 
-                    console.log('html video element exists');
-                    // For more options see: https://github.com/sampotts/plyr/#options
-                    // captions.update is required for captions to work with hls.js
-                    const player = new Plyr(htmlVideoElement, {autoplay: false});
-                    // player.on('ready', function(event) { player.start(); });
-                    if (!Hls.isSupported()) {
-                        console.log('not supported');
-                        htmlVideoElement.src = source;
-                    } else {
-                        // For more Hls.js options, see https://github.com/dailymotion/hls.js
-                        const hls = new Hls();
-                        hls.on(Hls.Events.ERROR, function (event, data) {
-                            console.log("error loading manifest");
-                            console.log(event);
-                            console.log(data);
-                            console.log(data.type);
-                            if (data.type == "networkError") {
-                                console.log('network error!');
-                            }
-                        });
-                        hls.loadSource(source);
-                        hls.attachMedia(htmlVideoElement);
-
-                        window.hls = hls;
-
-                        // Handle changing captions
-                        player.on('play', () => {
-
-                            player.currentTime = player.duration - 5
-                        });
-                        player.on('stalled', () => {
-                            console.log('stalled');
-                            // Caption support is still flaky. See: https://github.com/sampotts/plyr/issues/994
-                        });
-                        player.on('error', () => {
-
-                        });
-                        player.on('waiting', () => {
-                            console.log('waiting');
-                        });
-                        player.on('emptied', () => {
-                            console.log('emptied');
-                        });
-                        player.on('loadedmetadata', () => {
-                            console.log('loadedmetadata');
-                        });
-                    }
-                    // Expose player so it can be used from the console
-                    window.player = player;
-                }
-            }
-            displayVideo();
-        }
-
-        function initializeFlashPlayer(flashSource) {
+            console.log('html5 player routine triggered');
             console.log('searching for video element');
             let htmlVideoElement = document.querySelector('video');
             if (htmlVideoElement !== null) {
@@ -324,7 +234,7 @@
                         // Caption support is still flaky. See: https://github.com/sampotts/plyr/issues/994
                     });
                     player.on('error', () => {
-                        console.log('error');
+
                     });
                     player.on('waiting', () => {
                         console.log('waiting');
@@ -339,6 +249,8 @@
                 // Expose player so it can be used from the console
                 window.player = player;
             }
+
+            displayVideo();
         }
     </script>
 @endsection

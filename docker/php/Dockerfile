@@ -9,10 +9,10 @@ USER root
 
 # ************** STEP 1 extend image to add necessary libraries ****************** #
 # step 1.1 install php extensions
-RUN apt-get update
-RUN apt-get -y install  libonig-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng-dev zlib1g-dev libxml2-dev \
+RUN apt update
+RUN apt -y install --fix-missing libonig-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng-dev zlib1g-dev libxml2-dev \
                         libzip-dev libonig-dev graphviz openssl gnupg-utils libmcrypt4 libmcrypt-dev libssl-dev net-tools \
-                        procps vim exiftool
+                        procps exiftool default-mysql-client vim
 
 RUN docker-php-ext-install pdo pdo_mysql mysqli mbstring xml json phar zip gd dom session
 RUN docker-php-ext-enable pdo pdo_mysql mysqli mbstring xml json phar zip gd dom session
@@ -25,7 +25,6 @@ RUN pecl install redis-5.1.1 \
 
 RUN \
 if [ ! -z ${XDEBUG_ENABLE} ]; then \
-
     pecl install xdebug-2.8.1 \
     && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \

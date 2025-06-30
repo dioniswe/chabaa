@@ -12,6 +12,7 @@
             </div>
             <br><br>
         </div>
+        <!--iframe style="max-width: 300px; border: none; min-height: 260px; background-color: transparent;" src="https://www.wetter.de/widget/heute/u0te1h/false/"></iframe><br/><a href="https://www.wetter.de" rel="nofollow" target="_blank"></a-->
         <form action="{{route('user-settings')}}" method="POST">
             @csrf <!-- {{ csrf_field() }} -->
             <div class="card border-dark mb-6">
