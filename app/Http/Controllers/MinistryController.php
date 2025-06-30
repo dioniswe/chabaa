@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
-class ServantryController extends Controller
+class MinistryController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -33,7 +33,7 @@ class ServantryController extends Controller
      */
     public function home()
     {
-        return view('servantry.home');
+        return view('ministry.home');
     }
 
     /**
@@ -44,62 +44,62 @@ class ServantryController extends Controller
     public function church(Request $request)
     {
         if($request->getMethod() === 'GET') {
-            return view('servantry.church');
+            return view('ministry.church');
         }
         $request->all();
-        $config = Config::where('config','servantry.church.name')->first();
+        $config = Config::where('config','ministry.church.name')->first();
         if(empty($config)) {
             $config = new Config();
         }
-        $config->config = 'servantry.church.name';
+        $config->config = 'ministry.church.name';
         $config->value = $request->get('name');
         $config->save();
 
-        $config = Config::where('config','servantry.church.street')->first();
+        $config = Config::where('config','ministry.church.street')->first();
         if(empty($config)) {
             $config = new Config();
         }
-        $config->config = 'servantry.church.street';
+        $config->config = 'ministry.church.street';
         $config->value = $request->get('street');
         $config->save();
 
-        $config = Config::where('config','servantry.church.zip')->first();
+        $config = Config::where('config','ministry.church.zip')->first();
         if(empty($config)) {
             $config = new Config();
         }
-        $config->config = 'servantry.church.zip';
+        $config->config = 'ministry.church.zip';
         $config->value = $request->get('zip');
         $config->save();
 
-        $config = Config::where('config','servantry.church.city')->first();
+        $config = Config::where('config','ministry.church.city')->first();
         if(empty($config)) {
             $config = new Config();
         }
 
-        $config->config = 'servantry.church.city';
+        $config->config = 'ministry.church.city';
         $config->value = $request->get('city');
         $config->save();
 
-        $config = Config::where('config','servantry.church.email')->first();
+        $config = Config::where('config','ministry.church.email')->first();
         if(empty($config)) {
             $config = new Config();
         }
 
-        $config->config = 'servantry.church.email';
+        $config->config = 'ministry.church.email';
         $config->value = $request->get('email');
         $config->save();
 
 
-        $config = Config::where('config','servantry.church.phone')->first();
+        $config = Config::where('config','ministry.church.phone')->first();
         if(empty($config)) {
             $config = new Config();
         }
 
-        $config->config = 'servantry.church.phone';
+        $config->config = 'ministry.church.phone';
         $config->value = $request->get('phone');
         $config->save();
 
-        return Redirect::to('servantry/church');
+        return Redirect::to('ministry/church');
     }
 
     /**
@@ -109,7 +109,7 @@ class ServantryController extends Controller
      */
     public function general()
     {
-        return view('servantry.general');
+        return view('ministry.general');
     }
 
     /**
@@ -119,21 +119,21 @@ class ServantryController extends Controller
      */
     public function videoStreaming()
     {
-        return view('servantry.video-streaming');
+        return view('ministry.video-streaming');
     }
 
     /**
-     * church user servantry
+     * church user ministry
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function user()
     {
-        return view('servantry.user');
+        return view('ministry.user');
     }
 
     /**
-     * church user servantry apply settings
+     * church user ministry apply settings
      */
     public function userSettings(Request $request)
     {
@@ -154,7 +154,7 @@ class ServantryController extends Controller
      */
     public function radio()
     {
-        return view('servantry.radio');
+        return view('ministry.radio');
     }
 
     /**
@@ -164,7 +164,7 @@ class ServantryController extends Controller
      */
     public function library()
     {
-        return view('servantry.library');
+        return view('ministry.library');
     }
 
     /**
@@ -175,9 +175,8 @@ class ServantryController extends Controller
     public function announcements()
     {
 
-        return view('servantry.announcements');
+        return view('ministry.announcements');
     }
-
     /**
      * chat
      *
@@ -186,7 +185,7 @@ class ServantryController extends Controller
     public function chat(Request $request)
     {
 
-        return view('servantry.chat');
+        return view('ministry.chat');
     }
 
     /**
@@ -196,6 +195,6 @@ class ServantryController extends Controller
      */
     public function recordings()
     {
-        return view('servantry.recordings');
+        return view('ministry.recordings');
     }
 }

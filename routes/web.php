@@ -63,28 +63,30 @@ Route::post('/sundry-messages', 'HomeController@sundryMessageReceived')
 
 Route::group(
     [
-        'prefix' => 'servantry'
+        'prefix' => 'ministry'
     ], function () {
-    Route::any('/home', 'ServantryController@home')
-        ->name('servantry-home');
-    Route::any('/church', 'ServantryController@church')
-        ->name('servantry-church');
-    Route::any('/general', 'ServantryController@general')
-        ->name('servantry-general');
-    Route::any('/user', 'ServantryController@user')
-        ->name('servantry-user');
-    Route::any('/video-streaming', 'ServantryController@videoStreaming')
-        ->name('servantry-video-streaming');
-    Route::any('/radio', 'ServantryController@radio')
-        ->name('servantry-radio');
-    Route::any('/library', 'ServantryController@library')
-        ->name('servantry-library');
-    Route::any('/announcements', 'ServantryController@announcements')
-        ->name('servantry-announcements');
-    Route::any('/chat', 'ServantryController@chat')
-        ->name('servantry-chat');
-    Route::any('/recordings}', 'ServantryController@recordings')
-        ->name('servantry-recordings');
+    Route::any('/', 'MinistryController@home')
+        ->name('ministry-home');
+    Route::any('/home', 'MinistryController@home')
+        ->name('ministry-home');
+    Route::any('/church', 'MinistryController@church')
+        ->name('ministry-church');
+    Route::any('/general', 'MinistryController@general')
+        ->name('ministry-general');
+    Route::any('/user', 'MinistryController@user')
+        ->name('ministry-user');
+    Route::any('/video-streaming', 'MinistryController@videoStreaming')
+        ->name('ministry-video-streaming');
+    Route::any('/radio', 'MinistryController@radio')
+        ->name('ministry-radio');
+    Route::any('/library', 'MinistryController@library')
+        ->name('ministry-library');
+    Route::any('/announcements', 'MinistryController@announcements')
+        ->name('ministry-announcements');
+    Route::any('/chat', 'MinistryController@chat')
+        ->name('ministry-chat');
+    Route::any('/recordings}', 'MinistryController@recordings')
+        ->name('ministry-recordings');
 });
 
 Route::group(
@@ -95,7 +97,7 @@ Route::group(
         ->name('home');
     Route::get('/{church_service}', 'HomeController@churchService')
         ->name('church_service');
-    Route::get('/{radio}', 'HomeController@radio')
+    Route::get('/{radio}', 'RadioController@radio')
         ->name('radio');
     Route::get('/{library}', 'HomeController@library')
         ->name('library');

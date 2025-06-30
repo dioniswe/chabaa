@@ -1,4 +1,4 @@
-@extends('servantry.layout')
+@extends('ministry.layout')
 
 @section('content')
     <div class="row">

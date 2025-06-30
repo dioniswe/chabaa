@@ -9,7 +9,7 @@ return [
     */
 
     // The parent blade file
-    'laravelUsersBladeExtended'     => 'servantry.layout', // 'layouts.app'
+    'laravelUsersBladeExtended'     => 'ministry.layout', // 'layouts.app'
 
     // Enable `auth` middleware
     'authEnabled'                   => true,
